@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite this candidate manuscript with its version and stated limitations."
+title: "Critical nonexplosion and phase transitions in finite-catalyst compartment systems"
+authors:
+  - name: Anonymous
+version: 1.0.0-candidate
+doi: 10.5281/zenodo.23505123
+repository-code: "https://github.com/ipitchford/compartment-fragmentation-phase-classification"
+date-released: 2026-10-20
+license: CC0-1.0
+type: article

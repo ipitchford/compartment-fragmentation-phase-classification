@@ -1,0 +1,14 @@
+{
+  "title": "Critical nonexplosion and phase transitions in finite-catalyst compartment systems",
+  "publication_date": "2026-10-20",
+  "description": "Analytic classification of explosion and conservativity in a fragmenting compartment population, including critical regimes and a fresh-random-retention extension under an inverse-moment condition. Written proofs and fail-closed finite checks are included. AI-assisted work; external human peer review and proof-assistant formalisation are not claimed.",
+  "access_right": "open",
+  "creators": [{"name": "Anonymous"}],
+  "related_identifiers": [{"identifier": "https://github.com/ipitchford/compartment-fragmentation-phase-classification", "relation": "isSupplementTo", "scheme": "url"}],
+  "version": "1.0.0-candidate",
+  "doi": "10.5281/zenodo.23505123",
+  "license": "cc-zero",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "prereserve_doi": {"doi": "10.5281/zenodo.23505123", "recid": 23505123}
+}

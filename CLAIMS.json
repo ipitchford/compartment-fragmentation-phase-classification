@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0",
+  "claims": [
+    {"id":"CFP-1","statement":"The qualified finite-catalyst reduction transfers conservativity or almost-sure explosion under its respective hypotheses.","evidence":["paper.tex: prop:reduction"],"scope":"Conservative direction requires gamma at least m minus one; explosive direction assumes scalar explosion from every substrate count and concludes for catalyst-bearing states."},
+    {"id":"CFP-2","statement":"The stated power-law production/fragmentation phase classification holds.","evidence":["paper.tex: thm:power"],"scope":"Only the displayed rate expansions and model hypotheses."},
+    {"id":"CFP-3","statement":"The stated critical first- and second-order logarithmic boundary refinements hold.","evidence":["paper.tex: thm:secondary"],"scope":"The displayed remainder orders are substantive."},
+    {"id":"CFP-4","statement":"The explosive regimes satisfy the manuscript's quantitative lifetime conclusion.","evidence":["paper.tex: cor:lifetime"],"scope":"Analytic Lyapunov consequence under the stated bounded-catalyst hypotheses."},
+    {"id":"CFP-5","statement":"The fresh-random-retention extension holds with one finite inverse moment and uniform conditional moments.","evidence":["paper.tex: cor:random-retention"],"scope":"Excludes zero retention mass and the listed dependence and heavier-tail cases."},
+    {"id":"CFP-6","statement":"Uniform Q gives exact uniform retained-count rows and the stated phase comparison.","evidence":["paper.tex: uniform-retention example","code/verify_retention.py","results/random_retention_exact.json"],"scope":"Exact finite identity supports the example, not arbitrary random environments."}
+  ]
+}

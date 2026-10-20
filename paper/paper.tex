@@ -1,0 +1,948 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=Plum,citecolor=Plum,urlcolor=Plum,breaklinks=true]{hyperref}
+\hypersetup{pdftitle={Critical nonexplosion and phase transitions in finite-catalyst compartment systems},pdfauthor={Anonymous},pdfsubject={Unrefereed mathematical research; 20 October 2026}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Critical fragmentation in catalytic compartments}\fancyhead[R]{\small 20 October 2026}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}
+\setlist{itemsep=3pt,topsep=4pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\Var}{Var}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Nzero}{\mathbb N_0}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\A}{\mathcal A}
+\newcommand{\LL}{\mathcal L}
+\newcommand{\state}{\mathcal N}
+\newcommand{\ind}{\mathbf 1}
+\title{Critical nonexplosion and phase transitions\protect\\in finite-catalyst compartment systems}
+\author{Anonymous}
+\date{Research manuscript \textbullet\ 20 October 2026}
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+\begin{abstract}
+We study when a stochastic population of noninteracting compartments can undergo infinitely many model events in finite physical time. This mathematical ``explosion'' is a failure of the ordinary trajectory description, not a chemical detonation. A finite conserved number of catalysts drives superlinear substrate production, while compartments fragment at a content-dependent rate. For production rate $b+\alpha e(s)_m$ and fragmentation rate $\kappa s^\gamma$, we classify explosion for every integer $m\ge2$ and $\gamma\ge0$. Fragmentation prevents explosion when $\gamma>m-1$; at $\gamma=m-1$, the full population is conservative exactly when $\alpha\le\kappa\log(1/p)$, where $p$ is the fraction retained with a single catalyst. Elsewhere every finite state containing a catalyst explodes almost surely. A marked-lineage argument controls passive descendants, including fragmentation events invisible to the active projection, and proves Conjecture 3.14 of Anderson, Howells and Rojas La Luz (2026). We then establish robustness for real production exponents, a second-order logarithmic boundary including equality, moment-controlled retention, and fresh random retention fractions that may approach zero or equal one under a finite inverse-moment condition. A uniform-retention example shows that equal mean retention need not imply the same phase. Every explosive regime also has a uniform exponential lifetime bound when the catalyst count is bounded. The scalar Lyapunov and Lamperti mechanisms are classical; their application to the complete compartment population is made explicit.
+\end{abstract}
+\noindent\textbf{Status.} Unrefereed, AI-assisted research. The arguments have received separate internal model audits; these are not external peer review or a formal proof certificate. Statements about prior work are bounded by the documented source access and search of 19 October 2026.
+
+\section{Introduction and model}
+
+Content-dependent fragmentation can compete with the explosive growth of a chemical reaction network. The competition has two different levels. Within a compartment containing one catalyst, fragmentation acts as a downward catastrophe for the substrate count. In the complete population it also creates a second compartment, whose subsequent events continue to count towards the explosion time. A conservative scalar projection therefore does not, by itself, establish conservativity of the population.
+
+For orientation, Sections~\ref{sec:criteria}--\ref{sec:reduction} build the population-level proof engine: localised scalar tests, passive-population control and finite-catalyst induction. Section~\ref{sec:power-proof} then proves the source conjecture and the basic phase diagram. Sections~\ref{sec:robust}--\ref{sec:random-retention} vary the rate and retention assumptions without changing that population argument, and Appendix~\ref{app:lifetime} quantifies the lifetime in the explosive regimes. A reader interested only in Conjecture~3.14 may stop after Section~\ref{sec:power-proof}.
+
+Anderson, Howells and Rojas La Luz \cite{anderson2026} formulate this issue in a catalytic example and state a critical nonexplosion conjecture. Their Remark 3.13 already proves positive recurrence of the single-catalyst projection at the critical coefficient; their proof of Proposition 3.12 also uses an active/passive finite-event argument. The remaining step is to apply a marked, localised version of that argument to the one-catalyst base case. We give the step explicitly and then obtain a broader classification.
+
+Birth processes with population-dependent catastrophes and binomial thinning have a substantial earlier literature, including Brockwell, Gani and Resnick \cite{brockwell1982}. General continuous-time explosion tests and deeply critical logarithmic examples are treated by Menshikov and Petritis \cite{menshikov2014}. The secondary calculation below is a Lamperti drift--variance calculation \cite{lamperti1960,lo2024}; no new universal scalar criterion is claimed. Our proofs retain physical holding times and account separately for the finite-catalyst population.
+
+\subsection{Parent states, rates and splitting kernels}
+
+A compartment has state $(e,s)\in\Nzero^2$, where $e$ counts catalysts and $s$ counts substrates. A population state is a finite multiset of such pairs. Equivalently,
+\[
+\state=\left\{n:\Nzero^2\longrightarrow\Nzero:
+                    n\text{ has finite support}\right\},
+\]
+where $n_{e,s}$ is the number of compartments of type $(e,s)$. Let
+\[
+C(n)=\sum_{e,s}n_{e,s},\qquad
+E(n)=\sum_{e,s}e\,n_{e,s}.
+\]
+The empty multiset is allowed. A finite initial state always has finite $E(n)$.
+
+We first allow general rates
+\begin{equation}\label{eq:rates-general}
+\lambda_e(s)=b+e\,a(s),\qquad d(s),
+\end{equation}
+where $b>0$ and $a(s),d(s)\ge0$ are finite for every $s$. A substrate birth changes $(e,s)$ to $(e,s+1)$ at rate $\lambda_e(s)$. Fragmentation occurs at rate $d(s)$ and replaces the parent by two daughters with states
+\[
+(j,t),\qquad(e-j,s-t).
+\]
+For each parent $(e,s)$, a fixed probability kernel
+\[
+\psi_{e,s}(j,t),\qquad 0\le j\le e,\quad 0\le t\le s,
+\]
+specifies a labelled daughter pair. The population itself does not retain these labels.
+
+\emph{Every kernel depends only on the parent state $(e,s)$.} At each event a fresh Markov mark is used. Different compartments, and different descendant populations once separated, evolve independently conditional on their initial states. There is no global feedback, common external environment, coagulation, compartment inflow or exit, or catalyst creation or destruction. Substrate immigration is already included through the constant $b$ per compartment.
+
+We impose two conditions on fragmentation:
+\begin{enumerate}[label=(\textbf{F\arabic*})]
+\item\label{ass:dispersion}
+For every fixed $e\ge2$, there is $\varepsilon_e>0$ such that
+\begin{equation}\label{eq:dispersion}
+\sum_{j=1}^{e-1}\sum_{t=0}^s\psi_{e,s}(j,t)\ge\varepsilon_e
+\end{equation}
+whenever $d(s)>0$. Thus a fragmentation disperses a catalyst group into two nonempty catalyst groups with probability bounded away from zero, uniformly in its substrate count. No uniform lower bound over all $e$ is required.
+\item\label{ass:binomial}
+For a parent with $e=1$, the substrate count $Y_s$ in the daughter containing the catalyst has law $\operatorname{Bin}(s,p)$, for a fixed $0<p<1$. In terms of the labelled kernel,
+\begin{equation}\label{eq:retention}
+\Prob(Y_s=y)=\psi_{1,s}(1,y)+\psi_{1,s}(0,s-y)
+            =\binom{s}{y}p^y(1-p)^{s-y}.
+\end{equation}
+\end{enumerate}
+For $e=0$ the substrate allocation is arbitrary subject to conservation. Sections~\ref{sec:moments} and \ref{sec:random-retention} replace \ref{ass:binomial} by moment assumptions and fresh random retention fractions.
+
+Writing $\delta_{e,s}$ for one compartment of type $(e,s)$, the generator of the population is
+\begin{align}
+\LL V(n)
+={}&\sum_{e,s} n_{e,s}\lambda_e(s)
+ \bigl[V(n-\delta_{e,s}+\delta_{e,s+1})-V(n)\bigr]\nonumber\\
+&+\sum_{e,s}n_{e,s}d(s)
+ \sum_{j=0}^e\sum_{t=0}^s\psi_{e,s}(j,t)\nonumber\\
+&\hspace{29mm}\cdot
+ \bigl[V(n-\delta_{e,s}+\delta_{j,t}+\delta_{e-j,s-t})-V(n)\bigr].
+\label{eq:population-generator}
+\end{align}
+Every state has finite total rate and finitely many possible successors. We take the minimal continuous-time chain, with lifetime $\zeta$ equal to the limit of its successive jump times. Conservativity means $\Prob_n(\zeta=\infty)=1$. Almost-sure explosion means $\Prob_n(\zeta<\infty)=1$. Each fragmentation increases $C(n)$ by one, including a fragmentation with an empty daughter.
+
+\subsection{The power-law phase diagram}
+
+For integer $m\ge2$, define $(s)_m=s(s-1)\cdots(s-m+1)$ when $s\ge m$, and $(s)_m=0$ otherwise. Consider
+\begin{equation}\label{eq:mass-action}
+a(s)=\alpha(s)_m,\qquad d(s)=\kappa s^\gamma,
+\qquad \alpha,\kappa>0,\quad\gamma\ge0.
+\end{equation}
+At $\gamma=0$ we use $s^0=1$ also at $s=0$. Thus empty compartments may fragment, but their rate is finite.
+
+\begin{theorem}[Complete power-law classification]\label{thm:power}
+Under \ref{ass:dispersion}--\ref{ass:binomial} and \eqref{eq:mass-action}, put $\ell=\log(1/p)>0$. The minimal compartment chain has the following behaviour:
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Parameter region & Every finite initial state with $E(n)>0$\\
+\midrule
+$\gamma>m-1$ & Conservative\\
+$\gamma=m-1$, $\alpha\le\kappa\ell$ & Conservative\\
+$\gamma=m-1$, $\alpha>\kappa\ell$ & Explodes almost surely\\
+$0\le\gamma<m-1$ & Explodes almost surely\\
+\bottomrule
+\end{tabular}
+\end{center}
+Every catalyst-free finite state is conservative, in every region.
+\end{theorem}
+
+\begin{corollary}[The critical compartment conjecture]\label{cor:source}
+Take $m=2$, $\gamma=1$, $b=\kappa=1$, and $\alpha=\log(1/p)$. Every finite initial compartment state is conservative. In the notation and splitting assumptions of Example 3.11 of \cite{anderson2026}, this proves Conjecture 3.14.
+\end{corollary}
+
+The propensity in this corollary is $1+\alpha e\,s(s-1)$. Stating the propensity avoids a possible factor-of-two ambiguity: the source uses a binomial-coefficient convention for mass action, with the corresponding reaction-arrow coefficient $2\alpha$ for the two-substrate reaction. The catalyst-retention parameter $p$ refers to the daughter \emph{with the catalyst}, not to an arbitrarily labelled daughter.
+
+Theorem~\ref{thm:power} will follow from two scalar tests, a passive-population estimate, and induction on the conserved catalyst count. Later theorems keep this population argument and change only the scalar tests.
+
+\begin{center}
+\begin{tabular}{@{}p{0.19\linewidth}p{0.41\linewidth}p{0.33\linewidth}@{}}
+\toprule
+Statement & Additional hypotheses & Classification\\
+\midrule
+Theorem~\ref{thm:power}
+& Exact rates \eqref{eq:mass-action}; integer $m\ge2$; binomial retention.
+& Leading power and coefficient boundary above.\\[5pt]
+Theorem~\ref{thm:robust}
+& Polynomial errors \eqref{eq:polynomial-errors}; real $m>1$; binomial retention.
+& Same boundary, including $\alpha=\kappa\ell$.\\[5pt]
+Theorem~\ref{thm:secondary}
+& Logarithmic errors \eqref{eq:secondary-rates}; $\alpha=\kappa\ell$; binomial retention.
+& Conservative for $2\beta\le\sigma^2$; almost-sure explosion otherwise.\\[5pt]
+Corollary~\ref{cor:moments}
+& The rate hypotheses of the relevant theorem; moment bounds \eqref{eq:moment-hypothesis} replace binomial retention.
+& The corresponding classification is unchanged.\\[5pt]
+Corollary~\ref{cor:random-retention}
+& Fresh $Q\in(0,1]$; one finite inverse moment; uniform conditional moment bounds \eqref{eq:conditional-moments}.
+& Replace $\ell$ by $\E[-\log Q]$ and $\sigma^2$ by $\kappa\E[(\log Q)^2]$.\\
+\bottomrule
+\end{tabular}
+\end{center}
+All rows retain positive $b$, finite rates at low states, conservative parent-dependent kernels, condition \ref{ass:dispersion}, finite conserved catalyst count and no interactions. Corollary~\ref{cor:lifetime} adds uniform exponential lifetime bounds in the explosive cases when the total catalyst count is bounded by a fixed integer.
+
+\section{Two localised continuous-time criteria}\label{sec:criteria}
+
+We record the elementary forms of the Lyapunov arguments used below. General versions, including physical-time critical examples, belong to the existing semimartingale theory \cite{menshikov2014}. We include proofs to specify the stopping operations and avoid any irreducibility assumption in the explosion argument. Whenever a test is merely bounded below, we add a constant to make it at least one before using the upper-drift criterion; additive constants do not change its generator.
+
+\begin{lemma}[A proper upper-drift test]\label{lem:conservative}
+Let $Z$ be a minimal chain on a countable state space, with finite rates and finitely many successors at each state. Suppose $W\ge1$ has finite sublevel sets and
+\[
+QW\le cW
+\]
+for a finite constant $c\ge0$. Then $Z$ is conservative.
+\end{lemma}
+\begin{proof}
+Let $\tau_R$ be the first exit from $\{W\le R\}$. This set and its one-step successors are finite, so Dynkin's formula stopped at $T\wedge\tau_R$ is justified with bounded quantities. The stopped expectation satisfies
+\[
+\E W(Z_{t\wedge\tau_R})
+ \le W(Z_0)+c\int_0^t\E W(Z_{u\wedge\tau_R})\,du.
+\]
+Gronwall's inequality gives
+\[
+\E W(Z_{T\wedge\tau_R})\le W(Z_0)e^{cT}.
+\]
+On $\{\tau_R\le T\}$ the terminal value exceeds $R$, hence
+$\Prob(\tau_R\le T)\le W(Z_0)e^{cT}/R$. Explosion cannot occur while the chain remains in a finite set, since all its rates are then bounded. Letting $R\to\infty$ rules out explosion by $T$, and then taking integer $T$ proves the claim.
+\end{proof}
+
+\begin{lemma}[A vanishing test and almost-sure explosion]\label{lem:explosion}
+Let $X$ be a minimal chain on $\Nzero$. Its upward jumps have size one and positive finite rate from every state; all other jumps go to a smaller integer. Suppose its rates are finite and there is a bounded function $v:\Nzero\to(0,\infty)$ with $v(s)\to0$ such that
+\begin{equation}\label{eq:negative-test}
+\A v(s)\le-c\qquad(s>R)
+\end{equation}
+for some $c>0$ and finite $R$. Then $X$ explodes almost surely from every finite state. No irreducibility assumption is needed.
+\end{lemma}
+\begin{proof}
+Let $F=\{0,\ldots,R\}$ and $\eta=\min_{j\in F}v(j)>0$. Start at $s>R$ and choose $N>s$. Let $\tau_F$ and $\tau_N$ be the first hitting times of $F$ and $N$ before the lifetime. First stop at the \emph{bounded} time
+\[
+\sigma_{t,N}=t\wedge\tau_F\wedge\tau_N.
+\]
+Before this time the chain is confined to a finite interval. Dynkin's formula and \eqref{eq:negative-test} imply
+\begin{equation}\label{eq:dynkin-stopped}
+\E_s v(X_{\sigma_{t,N}})+c\,\E_s\sigma_{t,N}\le v(s).
+\end{equation}
+In particular, by first letting $t\to\infty$,
+\begin{equation}\label{eq:hit-estimates}
+\E_s(\tau_F\wedge\tau_N)\le\frac{v(s)}c,\qquad
+\Prob_s(\tau_F<\tau_N)\le\frac{v(s)}\eta.
+\end{equation}
+For the probability inequality one may first restrict to
+$\{\tau_F<\tau_N,\tau_F\le t\}$ in \eqref{eq:dynkin-stopped}; its terminal value is at least $\eta$. The finite expectation in \eqref{eq:hit-estimates} also proves that the stopped exit occurs almost surely.
+
+Because upward jumps have size one, $\tau_F\wedge\tau_N$ increases with $N$. Its limit has expectation at most $v(s)/c$. If $F$ is not reached before the lifetime, the chain therefore reaches arbitrarily high levels in a bounded amount of time. This is explosion: finitely many jumps cannot reach arbitrarily high levels, and infinite jumps in a finite set cannot accumulate with bounded rates. Also
+\[
+\{\tau_F<\tau_N\}\uparrow\{\tau_F<\zeta\};
+\]
+a finite lower hit before explosion has a finite path maximum. It follows that the nonexplosion probability $u(s)=\Prob_s(\zeta=\infty)$ satisfies
+\begin{equation}\label{eq:survival-bound}
+0\le u(s)\le\Prob_s(\tau_F<\zeta)\le\frac{v(s)}\eta
+\longrightarrow0.
+\end{equation}
+
+The first-jump decomposition makes $u$ harmonic for the embedded chain. Its total exit rate is positive at every state because the upward rate is positive. If $u$ were nonzero, \eqref{eq:survival-bound} would imply that its positive maximum is attained at a finite state $s_0$. A convex average of values no larger than that maximum can equal it only if every successor with positive transition probability also has that value. In particular, the upward transition forces $u(s_0+1)=u(s_0)$, and iteration forces the same maximum at arbitrarily large states. This contradicts \eqref{eq:survival-bound}. Thus $u\equiv0$.
+\end{proof}
+
+\section{Passive populations and marked active lineages}\label{sec:lift}
+
+Call a compartment \emph{active} if it contains a catalyst and \emph{passive} otherwise. A passive descendant never becomes active.
+
+\begin{proposition}[Passive conservativity]\label{prop:passive}
+Suppose $d(s)\le C_0(1+s^\gamma)$ for some $\gamma\ge0$. Every finite passive population is conservative, for every parent-dependent conservative substrate-splitting kernel.
+\end{proposition}
+\begin{proof}
+Let $r=\max\{1,\gamma\}$ and, for a passive population, define
+\[
+W(n)=1+\sum_i(1+s_i^r).
+\]
+This controls the number of compartments and every substrate count, so its sublevel sets are finite. For $r\ge1$ and $0\le t\le s$,
+\[
+t^r+(s-t)^r\le s^r.
+\]
+A fragmentation consequently changes $W$ by at most one. Its total positive contribution to $\LL W$ is bounded by
+\[
+\sum_i d(s_i)\le C_1 W(n).
+\]
+The only substrate births in a passive compartment have rate $b$, and
+$(s+1)^r-s^r\le C_r(1+s^r)$ by the mean value theorem, after adjusting the constant at zero. Therefore
+\[
+\LL W\le(C_1+bC_r)W.
+\]
+Lemma~\ref{lem:conservative} applies. This estimate includes fragmentation of an empty compartment when its rate is positive.
+\end{proof}
+
+\begin{lemma}[Marked-lineage lifting]\label{lem:lift}
+Suppose a distinguished compartment has an autonomous conservative substrate chain $X$ on $\Nzero$. In addition to its state-changing jumps, it can have marks at finite rates depending only on its current state. A mark may leave $X$ unchanged. Assume that every active event creates at most finitely many passive compartments with finite contents, whose descendant populations are conservative and do not affect $X$ or one another. Then the combined system, with any finite initial passive population, is conservative.
+\end{lemma}
+\begin{proof}
+Construct the active projection first. Its state-changing jumps are locally finite almost surely. On a fixed interval $[0,T]$ its visited states form a finite set. Localise first to the event that those states lie in $\{0,\ldots,M\}$. The rates of all additional marks are bounded on this finite set, so a Poisson construction with thinning gives finitely many marks on $[0,T]$. Letting $M\to\infty$ is justified by conservativity of $X$.
+
+Only finitely many passive populations are therefore emitted by time $T$, each from a finite state. Use independent Markov constructions for their descendants. Conditional on each emission time and state, conservativity gives finitely many events during the remaining part of $[0,T]$, almost surely. There are only finitely many such populations and finitely many initial passive compartments. Their event counts, together with the active count, have a finite sum.
+
+This construction has precisely the specified local rates before any putative explosion, hence agrees with the minimal chain up to its lifetime. It has no explosion on $[0,T]$. Taking integer $T$ completes the proof.
+\end{proof}
+
+For one catalyst, $X$ denotes the substrate count in the unique active compartment and
+\begin{equation}\label{eq:scalar-generator}
+\A f(s)=(b+a(s))[f(s+1)-f(s)]
+       +d(s)\{\E f(Y_s)-f(s)\}.
+\end{equation}
+At a fragmentation the other daughter is passive. The projection in \eqref{eq:scalar-generator} does not record events with $Y_s=s$, but such a split still creates an empty passive compartment. Its rate is $d(s)\Prob(Y_s=s)$, bounded on every finite set. These events are exactly the additional marks covered by Lemma~\ref{lem:lift}. Omitting them from the full-system argument would be incorrect.
+
+\section{Reduction from finite catalyst groups to one catalyst}\label{sec:reduction}
+
+The reduction below depends on growth rates, dispersion and autonomy. It does not require the binomial law.
+
+\begin{proposition}[Finite-catalyst reduction]\label{prop:reduction}
+Assume \eqref{eq:rates-general}, \ref{ass:dispersion}, and
+\begin{equation}\label{eq:equivalents}
+a(s)\sim\alpha s^m,\qquad d(s)\sim\kappa s^\gamma,
+\qquad m>1,\quad\gamma\ge0,\quad\alpha,\kappa>0.
+\end{equation}
+Use any parent-dependent one-catalyst retention kernel.
+\begin{enumerate}[label=(\roman*)]
+\item If $\gamma\ge m-1$ and the one-catalyst projection is conservative, the full population is conservative from every finite state.
+\item If the one-catalyst projection explodes almost surely from every substrate count, the full population explodes almost surely from every finite state with a catalyst.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The asymptotic bound on $d$ implies Proposition~\ref{prop:passive}. Together with Lemma~\ref{lem:lift}, this settles the conservative base cases of zero and one catalyst. A scalar explosion also forces full-system explosion no later than its own time, because each scalar jump is a genuine active event.
+
+We use induction on the finite total catalyst count $k$. If the initial catalysts occupy at least two compartments, the initial active compartments generate finitely many independent descendant populations, each with fewer than $k$ catalysts. For part (i), all are conservative by induction. For part (ii), at least one, indeed each active one, explodes almost surely by induction. The passive initial population causes no difficulty.
+
+It remains to place all $k\ge2$ catalysts in one active compartment. Follow this compartment until the first \emph{dispersion}, meaning a fragmentation with catalysts in both daughters. Before dispersion there is a unique active lineage, retaining all $k$ catalysts, while any other compartments are passive.
+
+For part (i), suppose explosion occurred before dispersion. If the active lineage had only finitely many events before that finite time, only finitely many passive populations would have been emitted and Proposition~\ref{prop:passive} would rule out explosion. Thus infinitely many active events would be necessary.
+
+Infinitely many fragmentation marks without dispersion have probability zero: the probability of avoiding dispersion through the first $j$ such marks is at most $(1-\varepsilon_k)^j$, by successive conditional probabilities. The remaining alternative is finitely many fragmentations and then infinitely many births. Starting from any fixed substrate count $s$, the probability that all subsequent active events are births is
+\begin{equation}\label{eq:birth-product}
+\prod_{u=s}^{\infty}\frac{\lambda_k(u)}{\lambda_k(u)+d(u)}.
+\end{equation}
+For $\gamma\ge m-1$ this is zero, because
+\begin{equation}\label{eq:hazard-divergence}
+\sum_{u=s}^{\infty}\frac{d(u)}{\lambda_k(u)+d(u)}=\infty.
+\end{equation}
+At $\gamma=m-1$ the summand is asymptotic to $\kappa/(k\alpha u)$; for $m-1<\gamma<m$ it has order $u^{\gamma-m}$; for $\gamma\ge m$ it is eventually bounded below by a positive constant. Since $1-z\le e^{-z}$, \eqref{eq:hazard-divergence} proves the product claim. Apply it after each possible finite event index and resulting state, and take a countable union. This handles the putative last fragmentation without treating its last occurrence as a stopping time.
+
+No explosion can precede dispersion. If dispersion occurs at a finite time before the lifetime, the full state then is finite, and the two catalyst groups each have fewer than $k$ catalysts. The induction hypothesis and the strong Markov property rule out later explosion. This proves (i).
+
+For (ii), consider an event of nonexplosion on which dispersion never occurs. Infinitely many fragmentation marks again have probability zero by the geometric estimate. Finitely many total active events over an infinite time interval also have probability zero, since active births always have rate at least $b>0$. It would remain to have finitely many fragmentations followed by infinitely many births.
+
+The exponential-race construction excludes this last event of infinite lifetime. Along a prescribed sequence of births from $s$, active waiting times can be written
+\[
+\frac{Z_u}{\lambda_k(u)+d(u)},\qquad u=s,s+1,\ldots,
+\]
+where the $Z_u$ are independent unit exponentials, independent of the uniforms selecting birth or fragmentation. By \eqref{eq:equivalents},
+\begin{equation}\label{eq:holding-sum}
+\sum_{u=s}^{\infty}\frac1{\lambda_k(u)+d(u)}<\infty.
+\end{equation}
+Hence the sum of these waiting times is finite almost surely. This statement holds jointly with the event of selecting births throughout; no conditioning on a zero-probability infinite sequence is needed. A countable union over possible last-fragmentation indices and states again suffices.
+
+Consequently, on nonexplosion dispersion occurs at a finite time almost surely. At that stopping time both nonempty catalyst daughter populations have fewer catalysts. Each is almost surely explosive by induction, a contradiction. Part (ii) follows.
+\end{proof}
+
+\begin{remark}[Why the catalyst count does not multiply the final threshold]
+For a fixed group of $k$ catalysts the instantaneous production coefficient is $k\alpha$. Nevertheless a group with $k\ge2$ cannot sustain infinitely many fragments without eventually dispersing, and in the conservative exponent range it cannot escape through an all-birth tail before dispersion. The lasting threshold is therefore determined by the one-catalyst lineage. Finiteness and conservation of the total catalyst count are essential to this reasoning.
+\end{remark}
+
+\section{Proof of the power-law classification}\label{sec:power-proof}
+
+\subsection{A logarithmic test on the conservative side}
+
+For the one-catalyst chain under \eqref{eq:mass-action}, use the increasing concave function
+\begin{equation}\label{eq:tangent-log}
+g(x)=
+\begin{cases}
+\log x,&x\ge p,\\
+x/p-1+\log p,&0\le x<p.
+\end{cases}
+\end{equation}
+Adding $2-\log p$ makes it at least one without changing its drift. On integers $g(s)=\log s$ for $s\ge1$. For $Y_s\sim\operatorname{Bin}(s,p)$, Jensen's inequality gives, for every integer $s\ge1$,
+\[
+\E g(Y_s)\le g(ps)=\log(ps)=g(s)-\ell.
+\]
+Also $g(s+1)-g(s)=\log(1+1/s)\le1/s$. Therefore
+\begin{equation}\label{eq:log-bound}
+\A g(s)\le\frac{b+\alpha(s)_m}{s}-\kappa\ell s^\gamma.
+\end{equation}
+At $s=0$ the drift is finite directly.
+
+If $\gamma>m-1$, the negative term dominates. If $\gamma=m-1$ and $\alpha\le\kappa\ell$, then
+\[
+\A g(s)\le(\alpha-\kappa\ell)s^{m-1}+b/s\le b.
+\]
+Thus $\A g$ is bounded above in every claimed conservative region, and $g$ has finite sublevel sets. Lemma~\ref{lem:conservative} proves conservativity of the scalar chain. Proposition~\ref{prop:reduction}(i) lifts this to every finite population.
+
+For completeness, at coefficient equality and $s\ge m$,
+\[
+\frac{(s)_m}{s}=(s-1)\cdots(s-m+1)
+ \le(s-1)s^{m-2}=s^{m-1}-s^{m-2},
+\]
+so
+\begin{equation}\label{eq:strict-critical-log}
+\A g(s)\le-\alpha s^{m-2}+b/s.
+\end{equation}
+This is the same tangent-logarithm mechanism already noted for the source's scalar critical chain \cite[Remark 3.13]{anderson2026}. The population conclusion uses the marked lifting lemma; it is not a new claim about this scalar test.
+
+\subsection{A negative power on the explosive side}
+
+Choose $v_r(s)=(s+1)^{-r}$ with $0<r<\min\{m-1,1/2\}$. We need the asymptotic
+\begin{equation}\label{eq:negative-moment}
+\E v_r(Y_s)=p^{-r}s^{-r}(1+o(1)).
+\end{equation}
+Here is a proof using only elementary moment bounds. For
+$G_s=\{|Y_s-ps|\le s^{3/4}\}$, the binomial mean and variance give
+$\Prob(G_s^c)=O(s^{-1/2})$ by Chebyshev. On $G_s$,
+$(Y_s+1)^{-r}/s^{-r}\to p^{-r}$ uniformly. On its complement the contribution after division by $s^{-r}$ is at most $O(s^{r-1/2})=o(1)$. This proves \eqref{eq:negative-moment}.
+
+Since $v_r(s+1)-v_r(s)=-rs^{-r-1}(1+o(1))$ and $(s)_m\sim s^m$, the scalar generator satisfies
+\begin{equation}\label{eq:power-drift}
+\A v_r(s)
+=-\alpha r\,s^{m-1-r}(1+o(1))
++\kappa(p^{-r}-1)s^{\gamma-r}(1+o(1)).
+\end{equation}
+For $\gamma<m-1$, the first term dominates and tends to $-\infty$. For $\gamma=m-1$ and $\alpha>\kappa\ell$, choose $r$ sufficiently small that
+\begin{equation}\label{eq:r-choice}
+-\alpha r+\kappa(p^{-r}-1)<0.
+\end{equation}
+This is possible because the derivative of the left-hand side at zero is $-\alpha+\kappa\ell<0$. Making $r$ smaller preserves all required upper restrictions. Again the drift tends to $-\infty$.
+
+The bounded positive function $v_r$ tends to zero. Lemma~\ref{lem:explosion} gives almost-sure scalar explosion, and Proposition~\ref{prop:reduction}(ii) gives almost-sure population explosion. Proposition~\ref{prop:passive} covers all catalyst-free states. This proves Theorem~\ref{thm:power} and Corollary~\ref{cor:source}.
+
+\begin{remark}[A direct interpretation below the balancing exponent]
+When $\gamma<m-1$, the series $\sum_u d(u)/\lambda_k(u)$ converges. Starting sufficiently high, the all-birth product \eqref{eq:birth-product} is then strictly positive, and \eqref{eq:holding-sum} makes that event explosive in finite time. This explains the exponent $m-1$ directly. The vanishing-function argument proves the stronger conclusion of probability one from every initial substrate count.
+\end{remark}
+
+\section{Real exponents and lower-order rate perturbations}\label{sec:robust}
+
+The exact falling factorial is not required for the phase diagram, but the coefficient equality needs care when its lower-order terms are changed.
+
+\begin{theorem}[Robust leading-order boundary]\label{thm:robust}
+Keep the model \eqref{eq:rates-general} and conditions \ref{ass:dispersion}--\ref{ass:binomial}. Let $m>1$ be real, $\gamma\ge0$, and suppose
+\begin{equation}\label{eq:polynomial-errors}
+a(s)=\alpha s^m+O(s^{m-1}),\qquad
+d(s)=\kappa s^\gamma+O(s^{\gamma-1}),
+\quad \alpha,\kappa>0.
+\end{equation}
+Then the classification of Theorem~\ref{thm:power} holds with this real exponent $m$. The rate values at finitely many states are unrestricted, subject to being finite and nonnegative and to $b>0$.
+\end{theorem}
+\begin{proof}
+The passive estimate and Proposition~\ref{prop:reduction} apply under \eqref{eq:polynomial-errors}. In the strict regions the previous scalar proofs use only asymptotic equivalents. More explicitly, the logarithmic upper bound is
+\[
+\A g(s)\le\frac{b+a(s)}s-\ell d(s),
+\]
+whose leading sign settles $\gamma>m-1$ and $\gamma=m-1$, $\alpha<\kappa\ell$. Formula \eqref{eq:power-drift}, with the new real $m$, settles the strict explosive regions by the same choice of $r$.
+
+At $\gamma=m-1$ and $\alpha=\kappa\ell$, take
+\[
+F(s)=\log\log(s+c),\qquad c>e.
+\]
+This function is positive, increasing and concave for a sufficiently large fixed $c$, and tends to infinity. In particular,
+$\E F(Y_s)\le F(ps)$. Write $z=\log(s+c)$. Direct differentiation gives
+\begin{align}
+F(s+1)-F(s)&=\frac1{sz}+O\!\left(\frac1{s^2z}\right),\label{eq:doublelog-birth}\\
+F(ps)-F(s)&=-\frac{\ell}{z}-\frac{\ell^2}{2z^2}
+ +O(z^{-3})+O((sz)^{-1}).\label{eq:doublelog-collapse}
+\end{align}
+For \eqref{eq:doublelog-collapse}, use
+$\log(ps+c)=z-\ell+O(s^{-1})$ and expand the outer logarithm across the fixed shift $-\ell$.
+
+Substitution in \eqref{eq:scalar-generator} cancels the terms
+$(\alpha-\kappa\ell)s^{m-1}/z$ and yields
+\begin{equation}\label{eq:robust-critical}
+\A F(s)\le
+-\frac{\kappa\ell^2}{2}\frac{s^{m-1}}{z^2}
++O\!\left(\frac{s^{m-1}}{z^3}+\frac{s^{m-2}}z\right).
+\end{equation}
+The error divided by the displayed negative magnitude tends to zero. Since $m>1$, that negative magnitude tends to infinity. The drift is eventually negative and bounded above globally, so Lemma~\ref{lem:conservative} proves scalar conservativity. Proposition~\ref{prop:reduction}(i) completes the population proof.
+\end{proof}
+
+The double logarithm is useful here because a positive $O(s^{m-1})$ correction in $a(s)$ may give the simpler logarithm a positive unbounded drift. The curvature term in \eqref{eq:robust-critical} dominates that correction. Thus the critical classification is not an artefact of the negative lower-order coefficients in a falling factorial.
+
+\section{A second-order logarithmic boundary}\label{sec:secondary}
+
+At equality of the leading coefficients, perturbations of relative order $1/\log s$ occur at a different scale from \eqref{eq:polynomial-errors}. Suppose
+\begin{align}
+a(s)&=s^m\left(\alpha+\frac{A_1}{\log s}
+                       +O((\log s)^{-2})\right),\nonumber\\
+d(s)&=s^{m-1}\left(\kappa+\frac{D_1}{\log s}
+                       +O((\log s)^{-2})\right),\label{eq:secondary-rates}\\
+\alpha&=\kappa\ell,\qquad m>1,\quad\kappa>0.\nonumber
+\end{align}
+These are asymptotic statements as $s\to\infty$; they impose no logarithm at $s=0$ or $s=1$. Define
+\begin{equation}\label{eq:secondary-coefficients}
+\beta=A_1-\ell D_1,\qquad \sigma^2=\kappa\ell^2>0.
+\end{equation}
+
+\begin{theorem}[Secondary boundary, including equality]\label{thm:secondary}
+Under \eqref{eq:rates-general}, \ref{ass:dispersion}--\ref{ass:binomial}, and \eqref{eq:secondary-rates}, the full population is conservative from every finite state when
+\[
+\beta\le\frac{\sigma^2}{2}.
+\]
+When $\beta>\sigma^2/2$, every finite state containing a catalyst explodes almost surely. Catalyst-free states remain conservative. The $O((\log s)^{-2})$ remainders in \eqref{eq:secondary-rates} are part of the equality assertion.
+\end{theorem}
+
+\subsection{The logarithmic-coordinate expansion}
+
+We prove a remainder estimate that also prepares the extension in Section~\ref{sec:moments}. Fix $c>e^e$, put $z=\log(s+c)$, and consider
+\begin{equation}\label{eq:phi-functions}
+\phi(z)=\log z,\qquad \phi(z)=\log\log z,\qquad
+\phi(z)=z^{-r}\quad(r>0).
+\end{equation}
+All corresponding functions $F_\phi(s)=\phi(\log(s+c))$ are bounded below on $\Nzero$; the first two tend to infinity and the last is strictly positive and tends to zero.
+
+\begin{lemma}[Controlled logarithmic expansion]\label{lem:log-expansion}
+Suppose $Y_s\in\{0,\ldots,s\}$ satisfies
+\begin{equation}\label{eq:moment-hypothesis}
+\E Y_s=ps+O(1),\qquad \Var(Y_s)=O(s),\qquad 0<p<1.
+\end{equation}
+Under \eqref{eq:secondary-rates}, for every fixed function in \eqref{eq:phi-functions},
+\begin{align}
+\frac{\A F_\phi(s)}{s^{m-1}}
+={}&\frac{\beta}{z}\phi'(z)+\frac{\sigma^2}{2}\phi''(z)
++\mathcal R_\phi(s),\label{eq:lamperti-expansion}\\
+\mathcal R_\phi(s)
+={}&O\!\left(\frac{|\phi'(z)|}{z^2}
+       +\frac{|\phi''(z)|}{z}
+       +H_3(z)\right)+\mathcal E_\phi(s),\label{eq:remainder}\\
+H_j(z)&=\sup_{|u-z|\le\ell+2}|\phi^{(j)}(u)|,\nonumber
+\end{align}
+where $\mathcal E_\phi(s)=o(z^{-N})$ for every fixed $N>0$. The constants can depend on $p,c,r$ and the rate and moment bounds.
+\end{lemma}
+\begin{proof}
+The functions in \eqref{eq:phi-functions} have derivatives varying by bounded factors over the fixed intervals defining $H_j$ once $z$ is large. The exact derivatives
+\[
+F_\phi'(x)=\frac{\phi'(\log(x+c))}{x+c},\qquad
+F_\phi''(x)=\frac{\phi''(\log(x+c))-\phi'(\log(x+c))}{(x+c)^2}
+\]
+give
+\begin{equation}\label{eq:phi-birth}
+F_\phi(s+1)-F_\phi(s)
+=\frac{\phi'(z)}s+O\!\left(\frac{H_1(z)+H_2(z)}{s^2}\right).
+\end{equation}
+
+Let $G_s=\{|Y_s-ps|\le s^{3/4}\}$. The bounded mean displacement in \eqref{eq:moment-hypothesis} and Chebyshev's inequality give
+\[
+\Prob(G_s^c)=O(s^{-1/2}).
+\]
+On $G_s$,
+\[
+\log(Y_s+c)=z-\ell+O(s^{-1/4}),
+\]
+uniformly. The mean value theorem thus bounds its contribution to the error from replacing $F_\phi(Y_s)$ by $\phi(z-\ell)$ by
+$O(s^{-1/4}H_1(z))$. On $G_s^c$, monotonicity and the fixed lower endpoint $\log c$ bound the absolute values by a constant times $1+|\phi(z)|$. Consequently,
+\begin{align}
+\E F_\phi(Y_s)-F_\phi(s)
+={}&-\ell\phi'(z)+\frac{\ell^2}{2}\phi''(z)+O(H_3(z))
++\epsilon_\phi(s),\label{eq:phi-collapse}\\
+|\epsilon_\phi(s)|
+\le{}&C\left(s^{-1/4}H_1(z)
+        +s^{-1/2}(1+|\phi(z)|)\right).\label{eq:retention-error}
+\end{align}
+Here the first line also uses third-order Taylor expansion over the fixed shift $-\ell$.
+
+One may replace $\log s$ by $z$ in \eqref{eq:secondary-rates} without changing its remainders. Substitute \eqref{eq:phi-birth} and \eqref{eq:phi-collapse} into \eqref{eq:scalar-generator} and divide by $s^{m-1}$. The coefficient of $\phi'$ at leading order is $\alpha-\kappa\ell=0$. The coefficients at the next order are
+\[
+\frac{A_1-\ell D_1}{z}\phi'(z)
+\quad\hbox{and}\quad
+\frac{\kappa\ell^2}{2}\phi''(z).
+\]
+The rate remainders produce
+$O(|\phi'|/z^2+|\phi''|/z+H_3)$.
+All further terms are bounded by a constant times
+\[
+\frac{H_1(z)+H_2(z)}s
++s^{-1/4}H_1(z)+s^{-1/2}(1+|\phi(z)|).
+\]
+The immigration term $b$ is absorbed here because $m>1$. For the three fixed functions, these expressions decay faster than every inverse power of $z$, since $s=e^z-c$. This proves \eqref{eq:lamperti-expansion}--\eqref{eq:remainder}.
+\end{proof}
+
+\subsection{Proof at both sides and at equality}
+
+\begin{proof}[Proof of Theorem~\ref{thm:secondary}]
+Binomial retention satisfies \eqref{eq:moment-hypothesis}. First suppose $\beta<\sigma^2/2$ and take $\phi(z)=\log z$. Lemma~\ref{lem:log-expansion} gives
+\begin{equation}\label{eq:secondary-subcritical}
+\A F_\phi(s)=s^{m-1}
+ \left(\frac{\beta-\sigma^2/2}{z^2}
+       +O(z^{-3})+o(z^{-3})\right).
+\end{equation}
+The drift tends to $-\infty$; $F_\phi$ is unbounded and has finite sublevel sets. This gives scalar conservativity by Lemma~\ref{lem:conservative}.
+
+At $\beta=\sigma^2/2$, use $\phi(z)=\log\log z$, so that $F_\phi$ is a triple logarithm. Its first two derivatives are
+\[
+\phi'(z)=\frac1{z\log z},\qquad
+\phi''(z)=-\frac1{z^2\log z}-\frac1{z^2(\log z)^2},
+\]
+and $H_3(z)=O(1/(z^3\log z))$. The first terms cancel except for
+\begin{equation}\label{eq:secondary-equality}
+\A F_\phi(s)=s^{m-1}
+ \left(-\frac{\sigma^2}{2z^2(\log z)^2}
+       +O\!\left(\frac1{z^3\log z}\right)
+       +o(z^{-4})\right).
+\end{equation}
+The ratio of the displayed $O$ error to the negative main term is
+$O(\log z/z)\to0$; the $o(z^{-4})$ term is smaller as well. The negative magnitude tends to infinity because $m>1$. Therefore this unbounded test also proves scalar conservativity. Since $d(s)\sim\kappa s^{m-1}$, Proposition~\ref{prop:reduction}(i) proves full conservativity in both cases.
+
+Finally suppose $\beta>\sigma^2/2$. Choose $r>0$ with
+\[
+\frac{\sigma^2(r+1)}2<\beta
+\]
+and take $\phi(z)=z^{-r}$. The expansion gives
+\begin{equation}\label{eq:secondary-supercritical}
+\A F_\phi(s)
+=r\,s^{m-1}z^{-r-2}
+ \left(\frac{\sigma^2(r+1)}2-\beta+O(z^{-1})+o(1)\right)
+\longrightarrow-\infty.
+\end{equation}
+The test is bounded, strictly positive and vanishes at infinity. Lemma~\ref{lem:explosion} proves almost-sure scalar explosion; Proposition~\ref{prop:reduction}(ii) lifts it. Proposition~\ref{prop:passive} applies to catalyst-free states throughout.
+\end{proof}
+
+\begin{remark}[Classical mechanism and the size of the remainder]\label{rem:lamperti}
+After the coordinate $z=\log(s+c)$ and division by $s^{m-1}$, the leading operator in \eqref{eq:lamperti-expansion} is
+\[
+\frac{\beta}{z}\frac{d}{dz}+\frac{\sigma^2}{2}\frac{d^2}{dz^2}.
+\]
+The boundary $2\beta=\sigma^2$ is the classical Lamperti balance, not a new generic principle. Continuous-time holding-rate acceleration and iterated-logarithmic tests have also been studied in general form \cite{menshikov2014}. Here the explicit error estimates permit the conclusion for the discrete retention kernel in physical time, and the marked-lineage argument supplies the complete population conclusion.
+
+The error order in \eqref{eq:secondary-rates} is substantive at equality. A further uncontrolled term of relative order $1/(\log s\,\log\log s)$ need not be below the negative term in \eqref{eq:secondary-equality}. The theorem does not classify all models sharing only the displayed leading and first logarithmic coefficients.
+\end{remark}
+
+\section{Retention controlled by two moments}\label{sec:moments}
+
+Independence of the individual substrate allocations is stronger than the estimates used above.
+
+\begin{corollary}[Moment-controlled retention]\label{cor:moments}
+In Theorems~\ref{thm:robust} and \ref{thm:secondary}, replace \ref{ass:binomial} by any parent-dependent Markov law $Y_s\in\{0,\ldots,s\}$ satisfying
+\[
+\E Y_s=ps+O(1),\qquad \Var(Y_s)=O(s)
+\]
+for a fixed $p\in(0,1)$. Keep \ref{ass:dispersion}, substrate conservation and all autonomy assumptions. Every explosion and conservativity conclusion remains valid, including almost-sure explosion and both coefficient equality cases. The power-law result follows as the corresponding special case.
+\end{corollary}
+\begin{proof}
+Lemma~\ref{lem:log-expansion} was already proved under these moment assumptions, so every scalar calculation in Theorem~\ref{thm:secondary}, including \eqref{eq:secondary-equality}, remains valid.
+
+For the strict explosive regions of Theorem~\ref{thm:robust}, choose
+$0<r<\min\{m-1,1/2\}$, smaller if necessary for \eqref{eq:r-choice}. The same event $G_s$ and bound $\Prob(G_s^c)=O(s^{-1/2})$ prove
+\[
+\E(Y_s+1)^{-r}=p^{-r}s^{-r}(1+o(1))
+\]
+exactly as in \eqref{eq:negative-moment}. Thus the required negative power drift is unchanged.
+
+For strict conservativity, Jensen's inequality with \eqref{eq:tangent-log} gives
+\[
+\E g(Y_s)\le g(\E Y_s)
+           =g(s)-\ell+O(s^{-1}).
+\]
+Its additional contribution to the generator is $O(d(s)/s)$, smaller than the negative leading terms in the strict conservative regions.
+
+At the ordinary coefficient equality, use $F(s)=\log\log(s+c)$ as in Theorem~\ref{thm:robust}. Concavity and the mean condition imply
+\[
+\E F(Y_s)\le F(\E Y_s)=F(ps)+O((s\log s)^{-1}).
+\]
+After multiplication by $d(s)\asymp s^{m-1}$, the new error is of the order already allowed in \eqref{eq:robust-critical}. Hence scalar conservativity still holds there.
+
+Lemma~\ref{lem:explosion} uses only the positive upward birth rates, not full irreducibility. It therefore applies without a hidden communication assumption on the new retention kernel. The marked lifting and finite-catalyst reduction depend only on the stated autonomous parent kernels and dispersion, so the population conclusions follow unchanged.
+\end{proof}
+
+This covers deterministic retention $Y_s=\lfloor ps\rfloor$, binomial retention, and dependent allocations satisfying the moment bounds. Fluctuations of order $s$ lie outside this corollary: at that scale the logarithmic collapse size can remain random, and its law cannot generally be inferred from the retained mean alone. Section~\ref{sec:random-retention} treats a precise class at that larger scale.
+
+Under binomial retention, the scalar chain is irreducible because births reach every higher state and a catastrophe from a sufficiently high state reaches every lower state with positive probability. Arbitrary moment-controlled kernels may leave low states transient. The corollary accordingly asserts explosion or conservativity, without asserting positive recurrence of every scalar state. The full compartment population is a different state space in any case; its compartment count grows at every fragmentation.
+
+\section{Random retention fractions}\label{sec:random-retention}
+
+Macroscopic variation in the retained fraction lies beyond the unconditional variance bound in Corollary~\ref{cor:moments}. It can nevertheless be treated by conditioning on that fraction. Random multiplicative catastrophes and their logarithmic drift and jump moments are established objects \cite{bansaye2013,meleard2015}. Fresh random binomial thinning with an expected logarithmic-loss threshold appears in the discrete-time work of Fontes, Machado and Schinazi \cite{fontes2023}; resampling a survival parameter at each catastrophe also appears in the constant-rate immigration model of Gallo and Rold\'an-Correa \cite{gallo2026}. Growth--collapse processes with explosion and recurrence criteria provide further scalar context \cite{goncalves2021}. The following result concerns the present finite-catalyst compartment population and its accelerated physical clock.
+
+\begin{corollary}[Random retention with one inverse moment]\label{cor:random-retention}
+At every one-catalyst fragmentation, draw a fresh $Q$ with a fixed law $\nu$, independently of the past, where
+\[
+Q\in(0,1]\quad\text{almost surely},\qquad
+\Prob(Q<1)>0,\qquad \E Q^{-\eta}<\infty
+\]
+for some $\eta>0$.
+Conditional on $Q=q$, let $Y_s\in\{0,\ldots,s\}$ have a Markov kernel of $(s,q)$. Suppose there are finite constants $C_1,C_2$ and an integer $s_0$, independent of $q$, such that for every $s\ge s_0$ and $\nu$-almost every $q$,
+\begin{equation}\label{eq:conditional-moments}
+\left|\E[Y_s\mid Q=q]-sq\right|\le C_1,\qquad
+\Var(Y_s\mid Q=q)\le C_2s.
+\end{equation}
+Retain all other model assumptions, including \ref{ass:dispersion}. Put
+\begin{equation}\label{eq:random-log-moments}
+\ell=\E[-\log Q],\qquad \mu_2=\E[(\log Q)^2],\qquad
+\sigma^2=\kappa\mu_2.
+\end{equation}
+Theorems~\ref{thm:power}, \ref{thm:robust} and \ref{thm:secondary} remain valid with these definitions of $\ell$ and $\sigma^2$. In the secondary theorem the coefficient is $\beta=A_1-\ell D_1$, with $A_1,D_1$ as in \eqref{eq:secondary-rates}. Both equality cases are included under the respective stated rate remainders. Every explosive case also satisfies Corollary~\ref{cor:lifetime}.
+\end{corollary}
+\begin{proof}
+Put $z=\log(s+c)$ and $L=-\log Q$. The inverse-moment condition is
+$\E e^{\eta L}<\infty$, so every fixed moment of $L$ is finite. Let
+\[
+A_s=\{Q\ge s^{-1/8}\},\qquad
+B_s=\{|Y_s-sQ|\le s^{3/4}\}.
+\]
+The bounded conditional mean error and conditional Chebyshev inequality give
+$\Prob(B_s^c\mid Q)\le Cs^{-1/2}$ uniformly, while Markov's inequality gives
+$\Prob(A_s^c)\le \E[Q^{-\eta}]s^{-\eta/8}$.
+On $A_s\cap B_s$,
+\[
+\log(Y_s+c)=z-L+O(s^{-1/8})
+\]
+uniformly, and the Taylor interval lies inside
+$[7z/8-o(1),z+o(1)]$. For
+$\phi(z)=z,\log z,\log\log z$, or $z^{-r}$, let $M_j(z)$ be the supremum of
+$|\phi^{(j)}|$ on this interval. Taylor expansion, followed by averaging, gives
+\begin{align}
+\E\phi(\log(Y_s+c))-\phi(z)
+={}&-\ell\phi'(z)+\frac{\mu_2}{2}\phi''(z)
+       +O(M_3(z))+\mathcal E_s,\label{eq:random-expansion}\\
+|\mathcal E_s|
+\le{}& C\left[s^{-1/8}M_1(z)
+       +(s^{-\eta/16}+s^{-1/2})(1+|\phi(z)|)\right].\nonumber
+\end{align}
+Indeed, on $\{L>(\log s)/8\}$,
+$\E[L^j\ind_{A_s^c}]\le C_js^{-\eta/16}$ for $j\le3$ by absorbing
+$L^j$ into $e^{\eta L/2}$. The restriction to $B_s$ does not change the full
+linear and quadratic moments: uniformly in $Q$,
+$\E[L^j\ind_{A_s\cap B_s^c}]\le Cs^{-1/2}\E L^j$ for $j=1,2$.
+The remaining exceptional values are bounded because $\log(Y_s+c)\in[\log c,z]$.
+Thus every error in \eqref{eq:random-expansion} is smaller than the inverse-logarithmic scales used below. The unit-birth expansion is the same as in Lemma~\ref{lem:log-expansion}.
+
+For strict leading conservativity, $\phi(z)=z$ yields drift
+$\alpha s^{m-1}-\kappa\ell s^\gamma+o(s^{m-1}+s^\gamma)$, which is eventually negative in the stated regions. At $\gamma=m-1$ and $\alpha=\kappa\ell$, under \eqref{eq:polynomial-errors}, $\phi(z)=\log z$ gives
+\begin{equation}\label{eq:random-critical}
+\A[\log\log(s+c)]
+=-\frac{\kappa\mu_2}{2}\frac{s^{m-1}}{z^2}(1+o(1)).
+\end{equation}
+This proves scalar conservativity, including equality.
+
+For leading explosion choose $0<r<\min\{m-1,1/2,\eta/8\}$ and $v(s)=(s+1)^{-r}$. On $A_s\cap B_s$,
+$s^r(Y_s+1)^{-r}=Q^{-r}(1+O(s^{-1/8}))$. On the two exceptional events the scaled contributions are respectively $O(s^{r-1/2})$ and $O(s^{r-\eta/8})$. Moreover
+$\E[Q^{-r}\ind_{A_s\cap B_s^c}]\le Cs^{-1/2}\E Q^{-r}$, and the
+$A_s^c$ contribution vanishes by integrability. Hence
+\[
+\E(Y_s+1)^{-r}=s^{-r}\E Q^{-r}(1+o(1)),
+\]
+and hence
+\[
+\A v(s)=-\alpha r s^{m-1-r}(1+o(1))
+ +\kappa(\E Q^{-r}-1)s^{\gamma-r}(1+o(1)).
+\]
+When $\gamma<m-1$ the first term dominates. At $\gamma=m-1$ and $\alpha>\kappa\ell$, the coefficient is negative for sufficiently small $r$, since
+$\left.\frac{d}{dr}\E Q^{-r}\right|_{r=0}=\ell$. Differentiation is justified for $r\le\eta/2$ by the integrable envelope $Le^{\eta L/2}$. In either case the drift tends to $-\infty$.
+
+Under the secondary rate expansion, \eqref{eq:random-expansion} gives
+\begin{align*}
+\frac{\A[\phi(\log(s+c))]}{s^{m-1}}
+={}&\frac{\beta}{z}\phi'(z)+\frac{\sigma^2}{2}\phi''(z)\\
+&+O\left(\frac{|\phi'(z)|}{z^2}
+       +\frac{|\phi''(z)|}{z}+M_3(z)\right)
+       +\widetilde{\mathcal E}_s,
+\end{align*}
+where $\widetilde{\mathcal E}_s$ is negligible at every displayed inverse-logarithmic scale. Thus the three tests in the proof of Theorem~\ref{thm:secondary} apply without changing their signs. In particular, at $\beta=\sigma^2/2$ the triple-logarithmic drift is
+\[
+-\frac{\sigma^2}{2}
+ \frac{s^{m-1}}{z^2(\log z)^2}(1+o(1)).
+\]
+For $\beta>\sigma^2/2$, $v(s)=z^{-r}$ with
+$\sigma^2(r+1)/2<\beta$ again has drift tending to $-\infty$.
+
+The proper upper-drift and vanishing-test lemmas supply scalar conservativity and almost-sure explosion. Proposition~\ref{prop:reduction} uses only autonomous parent kernels, dispersion, and the given rate orders, so it transfers all these conclusions to the full population. The passive estimate is unchanged. Finally, the proof of Corollary~\ref{cor:lifetime} needs only the bounded positive vanishing test with uniformly negative drift outside a finite set, positive births, eventual positivity of $d$, and the finite collection of dispersion constants. These properties hold here, proving the lifetime conclusion.
+\end{proof}
+
+The second moment in \eqref{eq:random-log-moments} is the \emph{raw} logarithmic moment, not $\Var(\log Q)$. Even a constant retention fraction has nonzero logarithmic noise because fragmentation times are random. The inverse-moment hypothesis permits unbounded logarithmic losses while keeping rare near-zero retention events below the equality scales. An atom at $Q=1$ is allowed and simply creates additional null projected marks. The corollary makes no claim for $Q=0$, laws without a finite inverse moment, state-dependent retention laws, or a temporally correlated common environment.
+
+For a concrete comparison, let $Y_s\mid Q\sim\operatorname{Bin}(s,Q)$ and let $Q=1/4$ or $3/4$ with equal probability. Then
+\[
+\E Q=\frac12,\qquad
+\ell=\frac12\log\frac{16}{3}>\log2,\qquad
+\Var(Y_s)=\frac{s^2+3s}{16}.
+\]
+At $\gamma=m-1$, choose
+\[
+\kappa\log2<\alpha<\frac{\kappa}{2}\log\frac{16}{3}.
+\]
+The constant-retention model $Q=1/2$ then explodes almost surely from every positive-catalyst state, while this two-point model is conservative. They retain the same fraction on average. The relevant threshold is determined by the mean logarithmic loss, and the mixture has fluctuations of order $s$, outside Corollary~\ref{cor:moments}.
+
+A continuous example makes the broadened scope especially transparent. Let $Q$ be uniform on $(0,1)$ and, conditional on $Q$, let $Y_s\sim\operatorname{Bin}(s,Q)$. Beta integration gives
+\[
+\Prob(Y_s=j)=\binom{s}{j}\int_0^1q^j(1-q)^{s-j}\,dq=\frac1{s+1},
+\qquad 0\le j\le s.
+\]
+Thus $Y_s$ is exactly uniform on $\{0,\ldots,s\}$,
+$\E Y_s=s/2$, $\Var(Y_s)=s(s+2)/12$, $\ell=1$ and $\mu_2=2$.
+The leading boundary is $\alpha=\kappa$, and the secondary boundary is
+$A_1-D_1=\kappa$, with equality conservative under the corresponding rate
+remainder. At $\alpha/\kappa=3/4$ the uniform-retention model is conservative,
+whereas the fixed-$Q=1/2$ conditional-binomial model is explosive because
+$\log2<3/4<1$. Equal arithmetic mean retention therefore does not determine the phase.
+
+
+\section{Scope, attribution and verification record}\label{sec:scope}
+
+The precise full-system conclusion is finite-time conservativity or almost-sure finite-time explosion for a finite initial population with finitely many conserved catalysts. The proof requires autonomous parent-dependent kernels and no interactions among descendant populations. Theorems~\ref{thm:robust} and \ref{thm:secondary} allow arbitrary finite-state modifications of the rate sequences, but retain $b>0$ and their stated large-state expansions. No limit uniform in $p\to0$ or $p\to1$ is asserted.
+
+The proof separates three ingredients. The passive Lyapunov function controls both compartment count and substrate mass even for arbitrary conserving daughter allocations. A conservative active projection has only finitely many fragmentation marks on each bounded interval, including its null projected jumps. Finally, the finite-catalyst induction uses a non-summable fragmentation hazard on the conservative side and summable all-birth holding times when proving the explosive side. These points justify transferring a scalar criterion to a growing population.
+
+The scalar logarithmic critical test and an active/passive argument were already present in \cite{anderson2026}. General Lyapunov explosion criteria are prior theory, and the leading and secondary logarithmic balances are not separately claimed as new universal results. The source-specific conclusion here is a proof of the stated compartment conjecture, together with the explicitly formulated population extensions. A bounded literature search found no earlier resolution of that conjecture in the inspected material; this is not a certification of historical priority. What remains outside the paper is equally important: interacting descendants, a common random environment, creation of catalysts, infinitely many catalysts, an atom at $Q=0$, and retention laws without the stated inverse moment all require new arguments.
+
+For source access, the full originating article, including its Example 3.11, Proposition 3.12, Remark 3.13 and Conjecture 3.14, was inspected. The full preprint of Menshikov and Petritis \cite{menshikov2014}, especially its general explosion results and critical-model discussion, and the relevant Lamperti section of the published manuscript of Lo, Menshikov and Wade \cite{lo2024} were also inspected. For \cite{brockwell1982}, the publisher abstract and metadata were available in this manuscript's audit, not the complete theorem statements. For \cite{lamperti1960}, author and institutional bibliographic records were checked; no original theorem is invoked without proof. Those access limits are retained because older scalar results could cover more of the present calculation than a title or abstract reveals.
+
+Separate internal reviews checked the omitted projection marks, finite-catalyst induction, time localisation in Dynkin's formula, positive-upward-transition maximum principle, both critical cancellations, the moment-controlled remainder, and the random-retention extension. The accompanying deterministic code checks 21 Jensen inequalities, 48 generator values and 12 binomial moment calculations through substrate count 100,000. Exact rational checks cover seven two-point-mixture probability rows (41 entries), two exponential-series inequalities and 33 uniform-retention rows. All validators use explicit failures that remain active under optimized Python; deliberate negative controls are run in both modes. These finite checks establish no asymptotic statement. The argument is analytical. From the repository root, `python3 code/replay.py` regenerates the public receipts. Simulation of very large substrate counts is neither evidence against conservativity nor a proof of explosion, and is not used as a substitute for the stopping-time calculations.
+
+\appendix
+\section{Uniform exponential lifetime bounds}\label{app:lifetime}
+
+The negative scalar test already used in every explosive regime gives a quantitative strengthening. This is an application of the existing Lyapunov mechanism, rather than a separate novelty claim for a general explosion criterion.
+
+\begin{corollary}[Uniform lifetime tail for a bounded catalyst count]\label{cor:lifetime}
+In any explosive regime established in Theorems~\ref{thm:power}, \ref{thm:robust}, \ref{thm:secondary}, or Corollaries~\ref{cor:moments} and \ref{cor:random-retention}, fix an integer $M\ge1$. There are constants $T_M=2M$ and $\epsilon_M\in(0,1)$ such that
+\begin{equation}\label{eq:tail}
+\sup_{\substack{n\in\state\\1\le E(n)\le M}}
+\Prob_n(\zeta>jT_M)\le(1-\epsilon_M)^j,\qquad j\in\Nzero.
+\end{equation}
+Here time is measured in any fixed physical units. In particular,
+\[
+\sup_{\substack{n\in\state\\1\le E(n)\le M}}\E_n\zeta
+\le\frac{T_M}{\epsilon_M}.
+\]
+For $0<\rho<-\log(1-\epsilon_M)/T_M$,
+\begin{equation}\label{eq:exponential-moment}
+\sup_{\substack{n\in\state\\1\le E(n)\le M}}\E_n e^{\rho\zeta}
+\le\frac{\epsilon_M e^{\rho T_M}}
+ {1-(1-\epsilon_M)e^{\rho T_M}}<\infty.
+\end{equation}
+The supremum allows arbitrarily large finite substrate counts and arbitrarily many passive compartments.
+\end{corollary}
+\begin{proof}
+In each stated regime, \eqref{eq:power-drift} or
+\eqref{eq:secondary-supercritical}, including the moment-controlled and random-retention versions, provides a bounded strictly positive $v(s)\to0$, a finite set
+$F=\{0,\ldots,R\}$, and $c_v>0$ with $\A v\le-c_v$ outside $F$.
+Let $\eta_v=\min_F v>0$ and write $\zeta_1$ for the scalar lifetime.
+The localised proof of Lemma~\ref{lem:explosion}, with $t\to\infty$ before the upper level tends to infinity, gives
+\[
+\E_s(\tau_F\wedge\zeta_1)\le v(s)/c_v,\qquad
+\Prob_s(\tau_F<\zeta_1)\le v(s)/\eta_v.
+\]
+Consequently,
+\begin{equation}\label{eq:high-state-block}
+\Prob_s(\zeta_1>1)
+\le v(s)(\eta_v^{-1}+c_v^{-1})\qquad(s>R).
+\end{equation}
+Indeed, either the chain hits $F$ before explosion, or survival past time one entails $\tau_F\wedge\zeta_1>1$, to which Markov's inequality applies.
+
+Choose $N_1>R$, $N_1\ge1$, so that the right side of
+\eqref{eq:high-state-block} is at most $1/2$ for every $s\ge N_1$. Put
+\[
+\pi_1=\min_{0\le s<N_1}
+\frac{\lambda_1(s)}{\lambda_1(s)+d(s)}
+\left(1-\exp\left[-\frac{\lambda_1(s)+d(s)}{N_1}\right]\right)>0.
+\]
+The bracketed expression times the prefactor is the probability that the next marked event is a birth and occurs within time $1/N_1$. Positivity follows from $\lambda_1(s)\ge b>0$. From any lower state, at most $N_1$ consecutive such births reach $N_1$ within time one with probability at least $\pi_1^{N_1}$. Null fragmentation marks are included as competitors in this probability. The strong Markov property and \eqref{eq:high-state-block} yield
+\begin{equation}\label{eq:singleton-block}
+\inf_{s\ge0}\Prob_s(\zeta_1\le2)\ge
+\epsilon_1:=\tfrac12\pi_1^{N_1}>0.
+\end{equation}
+This argument does not require irreducibility.
+
+For $M\ge2$, the asymptotic $d(s)\sim\kappa s^\gamma$ with $\gamma\ge0$ supplies $N_d\ge1$ and $\eta_d>0$ such that
+$d(s)\ge\eta_d$ for $s\ge N_d$. Define
+\begin{align*}
+\pi_M&=\min_{\substack{1\le e\le M\\0\le s<N_d}}
+\frac{\lambda_e(s)}{\lambda_e(s)+d(s)}
+\left(1-\exp\left[-\frac{\lambda_e(s)+d(s)}{N_d}\right]\right)>0,\\
+q_M&=\pi_M^{N_d}(1-e^{-\eta_d}),\qquad
+\delta_M=\min_{2\le e\le M}\varepsilon_e,\qquad H_M=q_M\delta_M>0.
+\end{align*}
+Follow a compartment until its first fragmentation or its own explosion. A birth-only path reaches $N_d$ within one time unit with probability at least $\pi_M^{N_d}$ if the starting substrate is below $N_d$. Above that level no preliminary path is needed. Until a first fragmentation, substrate can only increase, so its fragmentation intensity thereafter is at least $\eta_d$. The probability of a first fragmentation or explosion in the next unit of time is at least $1-e^{-\eta_d}$. A Poisson construction using a constant rate $\eta_d$ component, or the integrated hazard, gives this bound; an earlier birth explosion counts as success.
+
+Thus the probability of a first fragmentation or explosion by time two is at least $q_M$, uniformly over substrate and $e\le M$. When $e\ge2$, the first fragmentation disperses catalysts with conditional probability at least $\varepsilon_e\ge\delta_M$. Hence
+\[
+\Prob(\text{explosion or catalyst dispersion by time }2)\ge H_M.
+\]
+This step uses no lower bound on $d(s)$ at low states.
+
+Starting from one active compartment with $e\le M$, combine this block with \eqref{eq:singleton-block} by induction on $e$. At a successful dispersion choose one nonempty catalyst daughter; it has fewer than $e$ catalysts and evolves autonomously. This gives probability at least
+$\epsilon_1H_M^{e-1}$ of explosion by time $2e$.
+Other descendants may cause an earlier full explosion and cannot reduce the bound. If catalysts initially occupy several compartments, select any active one. Therefore, with
+$\epsilon_M=\epsilon_1H_M^{M-1}$ when $M\ge2$ and the previous $\epsilon_1$ when $M=1$,
+\[
+\inf_{\substack{n\in\state\\1\le E(n)\le M}}
+\Prob_n(\zeta\le2M)\ge\epsilon_M.
+\]
+On survival at each deterministic time the full state remains finite and its total catalyst count is conserved. Applying this uniform bound conditionally at multiples of $T_M=2M$ proves \eqref{eq:tail}.
+
+Finally integrate the tail on the intervals $[jT_M,(j+1)T_M)$. This gives the mean bound and
+\begin{align*}
+\E_n e^{\rho\zeta}
+&=1+\rho\int_0^\infty e^{\rho t}\Prob_n(\zeta>t)\,dt\\
+&\le1+(e^{\rho T_M}-1)
+ \sum_{j=0}^\infty\bigl[(1-\epsilon_M)e^{\rho T_M}\bigr]^j\\
+&=\frac{\epsilon_M e^{\rho T_M}}
+ {1-(1-\epsilon_M)e^{\rho T_M}},
+\end{align*}
+whenever the geometric series converges.
+\end{proof}
+
+The constants are not sharp. They may deteriorate as parameters approach a conservative boundary or as $M$ increases. The two model properties used for the uniform finite-time blocks are positive births through every finite low-state set and an eventual positive lower bound for the fragmentation rate. Both are available in the regimes covered here.
+
+
+\section*{Declarations and availability}
+
+\textbf{Authorship and AI assistance.} This anonymous scholarly output was produced by AI research agents under human direction. The public record attributes no human author. Internal model reviews are assurance evidence, not external peer review.
+
+\textbf{Data, code and materials.} The complete LaTeX source, fail-closed standard-library replay code, generated receipts, claim map and source-access record are included in the accompanying public repository and archival deposit. No confidential or proprietary data are used. The manuscript is authoritative for the proofs; finite computations have only the limited scope stated in Section~\ref{sec:scope}.
+
+\textbf{Ethics.} This is theoretical mathematical research involving no human participants, animals or personal data; institutional ethics approval was therefore not applicable.
+
+\textbf{Funding and competing interests.} No funding or competing-interest information was supplied. No claim beyond that recorded absence is made.
+
+\begin{thebibliography}{99}
+\bibitem{anderson2026}
+Anderson, D. F., Howells, A. S., \& Rojas La Luz, D. (2026).
+Stochastic reaction networks within interacting compartments with content-dependent fragmentation.
+\emph{Bulletin of Mathematical Biology, 88}, Article 106.
+\url{https://doi.org/10.1007/s11538-026-01659-7}.
+Preprint: \url{https://arxiv.org/abs/2511.10223}; inspected version 4, 10 June 2026.
+
+\bibitem{brockwell1982}
+Brockwell, P. J., Gani, J., \& Resnick, S. I. (1982).
+Birth, immigration and catastrophe processes.
+\emph{Advances in Applied Probability, 14}(4), 709--731.
+\url{https://doi.org/10.2307/1427020}.
+
+\bibitem{lamperti1960}
+Lamperti, J. (1960).
+Criteria for the recurrence or transience of stochastic processes. I.
+\emph{Journal of Mathematical Analysis and Applications, 1}, 314--330.
+\url{https://doi.org/10.1016/0022-247X(60)90005-6}.
+
+\bibitem{menshikov2014}
+Menshikov, M. V., \& Petritis, D. (2014).
+Explosion, implosion, and moments of passage times for continuous-time Markov chains: A semimartingale approach.
+\emph{Stochastic Processes and their Applications, 124}(7), 2388--2414.
+\url{https://doi.org/10.1016/j.spa.2014.03.001}.
+Full preprint consulted: \url{https://web.ma.utexas.edu/mp_arc/c/12/12-22.pdf}.
+
+\bibitem{lo2024}
+Lo, C. H., Menshikov, M. V., \& Wade, A. R. (2024).
+Strong transience for one-dimensional Markov chains with asymptotically zero drifts.
+\emph{Stochastic Processes and their Applications, 170}, Article 104260.
+\url{https://doi.org/10.1016/j.spa.2023.104260}.
+First online 10 November 2023. Full published manuscript: \url{https://discovery.ucl.ac.uk/id/eprint/10183659/}.
+
+\bibitem{bansaye2013}
+Bansaye, V., Pardo Millan, J. C., \& Smadi, C. (2013).
+On the extinction of continuous state branching processes with catastrophes.
+\emph{Electronic Journal of Probability, 18}, Article 106.
+\url{https://doi.org/10.1214/EJP.v18-2774}.
+Full preprint: \url{https://arxiv.org/abs/1301.6093}.
+
+\bibitem{meleard2015}
+Bansaye, V., \& M\'el\'eard, S. (2015).
+\emph{Some stochastic models for structured populations: Scaling limits and long time behavior} [Author exposition].
+\url{https://arxiv.org/abs/1506.04165}.
+The inspected current arXiv PDF is version 2 (2017); Theorem 5.2 gives the logarithmic random-catastrophe threshold.
+
+\bibitem{gallo2026}
+Gallo, S., \& Rold\'an-Correa, A. (2026).
+\emph{Immigration processes with binomial catastrophes and random survival parameters} [Preprint]. arXiv.
+\url{https://arxiv.org/abs/2605.24671}.
+Inspected version 1: \url{https://arxiv.org/html/2605.24671v1}.
+
+\bibitem{fontes2023}
+Fontes, L. R. G., Machado, F. P., \& Schinazi, R. B. (2023).
+Null recurrence and transience for a binomial catastrophe model in random environment.
+\emph{Journal of Statistical Mechanics: Theory and Experiment}.
+Preprint: \url{https://arxiv.org/abs/2211.14193}.
+\url{https://doi.org/10.1088/1742-5468/acbc23}.
+
+\bibitem{goncalves2021}
+Gon\c{c}alves, B., Huillet, T., \& L\"ocherbach, E. (2021).
+On population growth with catastrophes.
+Preprint: \url{https://arxiv.org/abs/2007.03277}.
+\url{https://doi.org/10.1080/15326349.2021.2020660}.
+\end{thebibliography}
+\end{document}
+

@@ -1,0 +1,778 @@
+{
+  "arithmetic": "Python binary64 floats; deterministic full-support binomial sums",
+  "interpretation": "Finite-scale sanity checks only; the manuscript supplies the proof.",
+  "validation": "explicit VerificationError checks; active under python -O",
+  "python_optimization_flag": 0,
+  "jensen_cases": 21,
+  "generator_cases": 48,
+  "moment_cases": 12,
+  "highest_state_checked": 100000,
+  "all_explicit_checks_passed": true,
+  "high_state_results": [
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.3,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -577.2320712671553,
+      "normalised_drift": -0.7651329870819148,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.3,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -585.9160260515855,
+      "normalised_drift": -0.7766437478220611,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.3,
+      "n": 100000,
+      "test": "triple_log",
+      "drift": -121.33168389938692,
+      "normalised_drift": -0.9602427184970542,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.3,
+      "n": 100000,
+      "test": "log_power",
+      "drift": -47.189090970558254,
+      "normalised_drift": -0.10196866467802189,
+      "predicted_limit": -0.1159640410845167
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.5,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -179.60614858422377,
+      "normalised_drift": -0.23807164536587788,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.5,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -188.29010336865304,
+      "normalised_drift": -0.24958240610602306,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.5,
+      "n": 100000,
+      "test": "triple_log",
+      "drift": -35.7302437196181,
+      "normalised_drift": -0.2827761493060573,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.5,
+      "n": 100000,
+      "test": "log_power",
+      "drift": -16.61281316393206,
+      "normalised_drift": -0.035897838674801154,
+      "predicted_limit": -0.038436241113456115
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.8,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -10.312127217375746,
+      "normalised_drift": -0.013668936799853744,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.8,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -18.99608200180478,
+      "normalised_drift": -0.025179697539998606,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.8,
+      "n": 100000,
+      "test": "triple_log",
+      "drift": -3.3128734773176802,
+      "normalised_drift": -0.02621872977988392,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.8,
+      "n": 100000,
+      "test": "log_power",
+      "drift": -1.8068375087027846,
+      "normalised_drift": -0.003904309327923616,
+      "predicted_limit": -0.00398344355944939
+    }
+  ],
+  "generator_results": [
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.3,
+      "n": 100,
+      "test": "double_log",
+      "drift": 17.841706568166078,
+      "normalised_drift": 4.089332916938516,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.3,
+      "n": 100,
+      "test": "double_log",
+      "drift": 0.5223693319483829,
+      "normalised_drift": 0.11972745408486309,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.3,
+      "n": 100,
+      "test": "triple_log",
+      "drift": 1.1270266822562789,
+      "normalised_drift": 0.6334866492849218,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.3,
+      "n": 100,
+      "test": "log_power",
+      "drift": -0.8107175836784912,
+      "normalised_drift": -0.25416004340599774,
+      "predicted_limit": -0.1159640410845167
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.3,
+      "n": 1000,
+      "test": "double_log",
+      "drift": 1.100256411918025,
+      "normalised_drift": 0.052802469878692665,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.3,
+      "n": 1000,
+      "test": "double_log",
+      "drift": -13.043870584170975,
+      "normalised_drift": -0.6259891568562553,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.3,
+      "n": 1000,
+      "test": "triple_log",
+      "drift": -3.87666571053488,
+      "normalised_drift": -0.6969607722278192,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.3,
+      "n": 1000,
+      "test": "log_power",
+      "drift": -1.7959886027533116,
+      "normalised_drift": -0.12693457655859813,
+      "predicted_limit": -0.1159640410845167
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.3,
+      "n": 10000,
+      "test": "double_log",
+      "drift": -79.8660911785571,
+      "normalised_drift": -0.6778009802478294,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.3,
+      "n": 10000,
+      "test": "double_log",
+      "drift": -90.6988325398379,
+      "normalised_drift": -0.7697353995376353,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.3,
+      "n": 10000,
+      "test": "triple_log",
+      "drift": -23.060702899202397,
+      "normalised_drift": -0.9650080976764707,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.3,
+      "n": 10000,
+      "test": "log_power",
+      "drift": -7.715245452804851,
+      "normalised_drift": -0.10208536514148968,
+      "predicted_limit": -0.1159640410845167
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.3,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -577.2320712671553,
+      "normalised_drift": -0.7651329870819148,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.3,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -585.9160260515855,
+      "normalised_drift": -0.7766437478220611,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.3,
+      "n": 100000,
+      "test": "triple_log",
+      "drift": -121.33168389938692,
+      "normalised_drift": -0.9602427184970542,
+      "predicted_limit": -0.7247752567782294
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.3,
+      "n": 100000,
+      "test": "log_power",
+      "drift": -47.189090970558254,
+      "normalised_drift": -0.10196866467802189,
+      "predicted_limit": -0.1159640410845167
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.5,
+      "n": 100,
+      "test": "double_log",
+      "drift": 17.30683908100598,
+      "normalised_drift": 3.9667408760321505,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.5,
+      "n": 100,
+      "test": "double_log",
+      "drift": -0.01249815521171449,
+      "normalised_drift": -0.002864586821501804,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.5,
+      "n": 100,
+      "test": "triple_log",
+      "drift": 0.24695569333486667,
+      "normalised_drift": 0.13881049770653536,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.5,
+      "n": 100,
+      "test": "log_power",
+      "drift": -0.24030564855999725,
+      "normalised_drift": -0.07533584480996834,
+      "predicted_limit": -0.038436241113456115
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.5,
+      "n": 1000,
+      "test": "double_log",
+      "drift": 9.784537686231062,
+      "normalised_drift": 0.4695703209341005,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.5,
+      "n": 1000,
+      "test": "double_log",
+      "drift": -4.359589309857952,
+      "normalised_drift": -0.20922130580084816,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.5,
+      "n": 1000,
+      "test": "triple_log",
+      "drift": -1.1674570263517623,
+      "normalised_drift": -0.20988958331324675,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.5,
+      "n": 1000,
+      "test": "log_power",
+      "drift": -0.6000286891978046,
+      "normalised_drift": -0.04240805730591576,
+      "predicted_limit": -0.038436241113456115
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.5,
+      "n": 10000,
+      "test": "double_log",
+      "drift": -18.246613192109294,
+      "normalised_drift": -0.15485385756721712,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.5,
+      "n": 10000,
+      "test": "double_log",
+      "drift": -29.07935455339009,
+      "normalised_drift": -0.24678827685702293,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.5,
+      "n": 10000,
+      "test": "triple_log",
+      "drift": -6.690825665985926,
+      "normalised_drift": -0.27998717021072683,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.5,
+      "n": 10000,
+      "test": "log_power",
+      "drift": -2.7338748878166967,
+      "normalised_drift": -0.03617365356437946,
+      "predicted_limit": -0.038436241113456115
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.5,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -179.60614858422377,
+      "normalised_drift": -0.23807164536587788,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.5,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -188.29010336865304,
+      "normalised_drift": -0.24958240610602306,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.5,
+      "n": 100000,
+      "test": "triple_log",
+      "drift": -35.7302437196181,
+      "normalised_drift": -0.2827761493060573,
+      "predicted_limit": -0.2402265069591007
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.5,
+      "n": 100000,
+      "test": "log_power",
+      "drift": -16.61281316393206,
+      "normalised_drift": -0.035897838674801154,
+      "predicted_limit": -0.038436241113456115
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.8,
+      "n": 100,
+      "test": "double_log",
+      "drift": 17.28176359943483,
+      "normalised_drift": 3.9609935563009793,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.8,
+      "n": 100,
+      "test": "double_log",
+      "drift": -0.03757363678286474,
+      "normalised_drift": -0.008611906552673125,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.8,
+      "n": 100,
+      "test": "triple_log",
+      "drift": 0.001158020150397121,
+      "normalised_drift": 0.0006509076638814479,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.8,
+      "n": 100,
+      "test": "log_power",
+      "drift": -0.01943811181964583,
+      "normalised_drift": -0.006093849995698438,
+      "predicted_limit": -0.00398344355944939
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.8,
+      "n": 1000,
+      "test": "double_log",
+      "drift": 13.673494305120634,
+      "normalised_drift": 0.65620546570957,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.8,
+      "n": 1000,
+      "test": "double_log",
+      "drift": -0.47063269096836535,
+      "normalised_drift": -0.022586161025378044,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.8,
+      "n": 1000,
+      "test": "triple_log",
+      "drift": -0.11959308046886363,
+      "normalised_drift": -0.02150087006217065,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.8,
+      "n": 1000,
+      "test": "log_power",
+      "drift": -0.060445827821538956,
+      "normalised_drift": -0.004272112611125995,
+      "predicted_limit": -0.00398344355944939
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.8,
+      "n": 10000,
+      "test": "double_log",
+      "drift": 7.893649773820414,
+      "normalised_drift": 0.06699117830202536,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.8,
+      "n": 10000,
+      "test": "double_log",
+      "drift": -2.939091587460382,
+      "normalised_drift": -0.02494324098778045,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.8,
+      "n": 10000,
+      "test": "triple_log",
+      "drift": -0.6169944163086711,
+      "normalised_drift": -0.025819013867943656,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.8,
+      "n": 10000,
+      "test": "log_power",
+      "drift": -0.2972424552614932,
+      "normalised_drift": -0.003933005730866404,
+      "predicted_limit": -0.00398344355944939
+    },
+    {
+      "scenario": "polynomial_perturbation",
+      "p": 0.8,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -10.312127217375746,
+      "normalised_drift": -0.013668936799853744,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_subcritical",
+      "p": 0.8,
+      "n": 100000,
+      "test": "double_log",
+      "drift": -18.99608200180478,
+      "normalised_drift": -0.025179697539998606,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_equality",
+      "p": 0.8,
+      "n": 100000,
+      "test": "triple_log",
+      "drift": -3.3128734773176802,
+      "normalised_drift": -0.02621872977988392,
+      "predicted_limit": -0.024896522246558684
+    },
+    {
+      "scenario": "secondary_supercritical",
+      "p": 0.8,
+      "n": 100000,
+      "test": "log_power",
+      "drift": -1.8068375087027846,
+      "normalised_drift": -0.003904309327923616,
+      "predicted_limit": -0.00398344355944939
+    }
+  ],
+  "jensen_results": [
+    {
+      "p": 0.3,
+      "n": 1,
+      "expected_g": -1.542780963028155,
+      "jensen_upper": -1.2039728043259361,
+      "margin": 0.3388081587022189
+    },
+    {
+      "p": 0.3,
+      "n": 2,
+      "expected_g": -1.0175634278693135,
+      "jensen_upper": -0.5108256237659907,
+      "margin": 0.5067378041033228
+    },
+    {
+      "p": 0.3,
+      "n": 5,
+      "expected_g": 0.03211161047154984,
+      "jensen_upper": 0.4054651081081644,
+      "margin": 0.3733534976366145
+    },
+    {
+      "p": 0.3,
+      "n": 10,
+      "expected_g": 0.9224853428138471,
+      "jensen_upper": 1.0986122886681098,
+      "margin": 0.1761269458542627
+    },
+    {
+      "p": 0.3,
+      "n": 50,
+      "expected_g": 2.6833484065375117,
+      "jensen_upper": 2.70805020110221,
+      "margin": 0.024701794564698343
+    },
+    {
+      "p": 0.3,
+      "n": 100,
+      "expected_g": 3.3892091555702217,
+      "jensen_upper": 3.4011973816621555,
+      "margin": 0.011988226091933729
+    },
+    {
+      "p": 0.3,
+      "n": 1000,
+      "expected_g": 5.702612746014067,
+      "jensen_upper": 5.703782474656201,
+      "margin": 0.0011697286421341602
+    },
+    {
+      "p": 0.5,
+      "n": 1,
+      "expected_g": -0.8465735902799727,
+      "jensen_upper": -0.6931471805599453,
+      "margin": 0.1534264097200274
+    },
+    {
+      "p": 0.5,
+      "n": 2,
+      "expected_g": -0.25,
+      "jensen_upper": 0.0,
+      "margin": 0.25
+    },
+    {
+      "p": 0.5,
+      "n": 5,
+      "expected_g": 0.7739174134298175,
+      "jensen_upper": 0.9162907318741551,
+      "margin": 0.14237331844433765
+    },
+    {
+      "p": 0.5,
+      "n": 10,
+      "expected_g": 1.5484966084178313,
+      "jensen_upper": 1.6094379124341003,
+      "margin": 0.06094130401626896
+    },
+    {
+      "p": 0.5,
+      "n": 50,
+      "expected_g": 3.208558357938947,
+      "jensen_upper": 3.2188758248682006,
+      "margin": 0.010317466929253616
+    },
+    {
+      "p": 0.5,
+      "n": 100,
+      "expected_g": 3.9069459193729137,
+      "jensen_upper": 3.912023005428146,
+      "margin": 0.005077086055232272
+    },
+    {
+      "p": 0.5,
+      "n": 1000,
+      "expected_g": 6.214107346414021,
+      "jensen_upper": 6.214608098422191,
+      "margin": 0.0005007520081701244
+    },
+    {
+      "p": 0.8,
+      "n": 1,
+      "expected_g": -0.2446287102628419,
+      "jensen_upper": -0.2231435513142097,
+      "margin": 0.021485158948632177
+    },
+    {
+      "p": 0.8,
+      "n": 2,
+      "expected_g": 0.39468845350579673,
+      "jensen_upper": 0.47000362924573563,
+      "margin": 0.0753151757399389
+    },
+    {
+      "p": 0.8,
+      "n": 5,
+      "expected_g": 1.3553003118885907,
+      "jensen_upper": 1.3862943611198906,
+      "margin": 0.03099404923129989
+    },
+    {
+      "p": 0.8,
+      "n": 10,
+      "expected_g": 2.065678331624788,
+      "jensen_upper": 2.0794415416798357,
+      "margin": 0.013763210055047548
+    },
+    {
+      "p": 0.8,
+      "n": 50,
+      "expected_g": 3.686334569766904,
+      "jensen_upper": 3.6888794541139363,
+      "margin": 0.0025448843470323723
+    },
+    {
+      "p": 0.8,
+      "n": 100,
+      "expected_g": 4.380765557980888,
+      "jensen_upper": 4.382026634673881,
+      "margin": 0.001261076692992802
+    },
+    {
+      "p": 0.8,
+      "n": 1000,
+      "expected_g": 6.684486618155967,
+      "jensen_upper": 6.684611727667927,
+      "margin": 0.00012510951196009756
+    }
+  ],
+  "binomial_moment_errors": [
+    {
+      "p": 0.3,
+      "n": 100,
+      "mean_relative_error": 0.0,
+      "variance_relative_error": 0.0
+    },
+    {
+      "p": 0.3,
+      "n": 1000,
+      "mean_relative_error": 1.8947806286936006e-16,
+      "variance_relative_error": 2.7068294695622867e-16
+    },
+    {
+      "p": 0.3,
+      "n": 10000,
+      "mean_relative_error": 0.0,
+      "variance_relative_error": 2.1654635756498291e-16
+    },
+    {
+      "p": 0.3,
+      "n": 100000,
+      "mean_relative_error": 0.0,
+      "variance_relative_error": 3.4647417210397267e-16
+    },
+    {
+      "p": 0.5,
+      "n": 100,
+      "mean_relative_error": 0.0,
+      "variance_relative_error": 1.4210854715202004e-16
+    },
+    {
+      "p": 0.5,
+      "n": 1000,
+      "mean_relative_error": 1.1368683772161603e-16,
+      "variance_relative_error": 1.1368683772161603e-16
+    },
+    {
+      "p": 0.5,
+      "n": 10000,
+      "mean_relative_error": 0.0,
+      "variance_relative_error": 0.0
+    },
+    {
+      "p": 0.5,
+      "n": 100000,
+      "mean_relative_error": 0.0,
+      "variance_relative_error": 8.731149137020111e-16
+    },
+    {
+      "p": 0.8,
+      "n": 100,
+      "mean_relative_error": 0.0,
+      "variance_relative_error": 0.0
+    },
+    {
+      "p": 0.8,
+      "n": 1000,
+      "mean_relative_error": 1.4210854715202004e-16,
+      "variance_relative_error": 0.0
+    },
+    {
+      "p": 0.8,
+      "n": 10000,
+      "mean_relative_error": 1.1368683772161603e-16,
+      "variance_relative_error": 1.421085471520201e-16
+    },
+    {
+      "p": 0.8,
+      "n": 100000,
+      "mean_relative_error": 0.0,
+      "variance_relative_error": 1.1368683772161605e-15
+    }
+  ]
+}

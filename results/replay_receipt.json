@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "drift": {
+      "ordinary_replay": "passed",
+      "optimized_replay": "passed",
+      "negative_controls": [
+        "jensen_failed_as_required",
+        "variance_failed_as_required"
+      ]
+    },
+    "retention": {
+      "ordinary_replay": "passed",
+      "optimized_replay": "passed",
+      "negative_controls": [
+        "mixture-variance_failed_as_required",
+        "uniform-row_failed_as_required"
+      ]
+    }
+  },
+  "semantic_receipts_equal_ignoring_optimization_flag": true,
+  "scope": "finite exact and floating-point checks; analytic stochastic proofs remain controlling"
+}

@@ -1,0 +1,426 @@
+{
+  "arithmetic": "Python fractions.Fraction; exact rational arithmetic",
+  "validation": "explicit VerificationError checks; active under python -O",
+  "python_optimization_flag": 0,
+  "interpretation": "Finite probability-row and exponential-series checks for the modelling example; not a proof of any stochastic or asymptotic theorem.",
+  "retention_fractions": [
+    "1/4",
+    "3/4"
+  ],
+  "mixture_weights": [
+    "1/2",
+    "1/2"
+  ],
+  "states_checked": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    8,
+    16
+  ],
+  "mixture_rows_checked": 7,
+  "probability_entries_checked": 41,
+  "normalisation_checks": 7,
+  "mean_checks": 7,
+  "variance_checks": 7,
+  "exponential_inequalities_checked": 2,
+  "strict_logarithmic_interval": "log(2) < 3/4 < (1/2)*log(16/3)",
+  "logarithmic_interval_certified": true,
+  "all_explicit_checks_passed": true,
+  "uniform_retention_example": {
+    "law": "Q uniform on (0,1), conditional Y~Bin(s,Q)",
+    "states_checked": [
+      0,
+      32
+    ],
+    "rows_checked": 33,
+    "identity": "P(Y=j)=1/(s+1); mean=s/2; variance=s(s+2)/12",
+    "rows": [
+      {
+        "s": 0,
+        "probability_each_state": "1",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "0",
+        "variance": "0"
+      },
+      {
+        "s": 1,
+        "probability_each_state": "1/2",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "1/2",
+        "variance": "1/4"
+      },
+      {
+        "s": 2,
+        "probability_each_state": "1/3",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "1",
+        "variance": "2/3"
+      },
+      {
+        "s": 3,
+        "probability_each_state": "1/4",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "3/2",
+        "variance": "5/4"
+      },
+      {
+        "s": 4,
+        "probability_each_state": "1/5",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "2",
+        "variance": "2"
+      },
+      {
+        "s": 5,
+        "probability_each_state": "1/6",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "5/2",
+        "variance": "35/12"
+      },
+      {
+        "s": 6,
+        "probability_each_state": "1/7",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "3",
+        "variance": "4"
+      },
+      {
+        "s": 7,
+        "probability_each_state": "1/8",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "7/2",
+        "variance": "21/4"
+      },
+      {
+        "s": 8,
+        "probability_each_state": "1/9",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "4",
+        "variance": "20/3"
+      },
+      {
+        "s": 9,
+        "probability_each_state": "1/10",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "9/2",
+        "variance": "33/4"
+      },
+      {
+        "s": 10,
+        "probability_each_state": "1/11",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "5",
+        "variance": "10"
+      },
+      {
+        "s": 11,
+        "probability_each_state": "1/12",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "11/2",
+        "variance": "143/12"
+      },
+      {
+        "s": 12,
+        "probability_each_state": "1/13",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "6",
+        "variance": "14"
+      },
+      {
+        "s": 13,
+        "probability_each_state": "1/14",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "13/2",
+        "variance": "65/4"
+      },
+      {
+        "s": 14,
+        "probability_each_state": "1/15",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "7",
+        "variance": "56/3"
+      },
+      {
+        "s": 15,
+        "probability_each_state": "1/16",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "15/2",
+        "variance": "85/4"
+      },
+      {
+        "s": 16,
+        "probability_each_state": "1/17",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "8",
+        "variance": "24"
+      },
+      {
+        "s": 17,
+        "probability_each_state": "1/18",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "17/2",
+        "variance": "323/12"
+      },
+      {
+        "s": 18,
+        "probability_each_state": "1/19",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "9",
+        "variance": "30"
+      },
+      {
+        "s": 19,
+        "probability_each_state": "1/20",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "19/2",
+        "variance": "133/4"
+      },
+      {
+        "s": 20,
+        "probability_each_state": "1/21",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "10",
+        "variance": "110/3"
+      },
+      {
+        "s": 21,
+        "probability_each_state": "1/22",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "21/2",
+        "variance": "161/4"
+      },
+      {
+        "s": 22,
+        "probability_each_state": "1/23",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "11",
+        "variance": "44"
+      },
+      {
+        "s": 23,
+        "probability_each_state": "1/24",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "23/2",
+        "variance": "575/12"
+      },
+      {
+        "s": 24,
+        "probability_each_state": "1/25",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "12",
+        "variance": "52"
+      },
+      {
+        "s": 25,
+        "probability_each_state": "1/26",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "25/2",
+        "variance": "225/4"
+      },
+      {
+        "s": 26,
+        "probability_each_state": "1/27",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "13",
+        "variance": "182/3"
+      },
+      {
+        "s": 27,
+        "probability_each_state": "1/28",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "27/2",
+        "variance": "261/4"
+      },
+      {
+        "s": 28,
+        "probability_each_state": "1/29",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "14",
+        "variance": "70"
+      },
+      {
+        "s": 29,
+        "probability_each_state": "1/30",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "29/2",
+        "variance": "899/12"
+      },
+      {
+        "s": 30,
+        "probability_each_state": "1/31",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "15",
+        "variance": "80"
+      },
+      {
+        "s": 31,
+        "probability_each_state": "1/32",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "31/2",
+        "variance": "341/4"
+      },
+      {
+        "s": 32,
+        "probability_each_state": "1/33",
+        "beta_integral_identity": "C(s,k) k! (s-k)!/(s+1)! = 1/(s+1)",
+        "mean": "16",
+        "variance": "272/3"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "s": 0,
+      "probabilities_k_0_through_s": [
+        "1"
+      ],
+      "normalisation": "1",
+      "mean": "0",
+      "expected_mean": "0",
+      "variance": "0",
+      "expected_variance": "0"
+    },
+    {
+      "s": 1,
+      "probabilities_k_0_through_s": [
+        "1/2",
+        "1/2"
+      ],
+      "normalisation": "1",
+      "mean": "1/2",
+      "expected_mean": "1/2",
+      "variance": "1/4",
+      "expected_variance": "1/4"
+    },
+    {
+      "s": 2,
+      "probabilities_k_0_through_s": [
+        "5/16",
+        "3/8",
+        "5/16"
+      ],
+      "normalisation": "1",
+      "mean": "1",
+      "expected_mean": "1",
+      "variance": "5/8",
+      "expected_variance": "5/8"
+    },
+    {
+      "s": 3,
+      "probabilities_k_0_through_s": [
+        "7/32",
+        "9/32",
+        "9/32",
+        "7/32"
+      ],
+      "normalisation": "1",
+      "mean": "3/2",
+      "expected_mean": "3/2",
+      "variance": "9/8",
+      "expected_variance": "9/8"
+    },
+    {
+      "s": 4,
+      "probabilities_k_0_through_s": [
+        "41/256",
+        "15/64",
+        "27/128",
+        "15/64",
+        "41/256"
+      ],
+      "normalisation": "1",
+      "mean": "2",
+      "expected_mean": "2",
+      "variance": "7/4",
+      "expected_variance": "7/4"
+    },
+    {
+      "s": 8,
+      "probabilities_k_0_through_s": [
+        "3281/65536",
+        "1095/8192",
+        "2583/16384",
+        "945/8192",
+        "2835/32768",
+        "945/8192",
+        "2583/16384",
+        "1095/8192",
+        "3281/65536"
+      ],
+      "normalisation": "1",
+      "mean": "4",
+      "expected_mean": "4",
+      "variance": "11/2",
+      "expected_variance": "11/2"
+    },
+    {
+      "s": 16,
+      "probabilities_k_0_through_s": [
+        "21523361/4294967296",
+        "7174455/268435456",
+        "35872335/536870912",
+        "27901125/268435456",
+        "120921255/1073741824",
+        "24213735/268435456",
+        "29918889/536870912",
+        "7818525/268435456",
+        "42220035/2147483648",
+        "7818525/268435456",
+        "29918889/536870912",
+        "24213735/268435456",
+        "120921255/1073741824",
+        "27901125/268435456",
+        "35872335/536870912",
+        "7174455/268435456",
+        "21523361/4294967296"
+      ],
+      "normalisation": "1",
+      "mean": "8",
+      "expected_mean": "8",
+      "variance": "19",
+      "expected_variance": "19"
+    }
+  ],
+  "exponential_series_bound": "For x>0, S_N=sum(x^k/k!, k=0..N) is a strict lower bound. If r=x/(N+2)<1, the omitted positive terms have successive ratios at most r, so their sum is at most [x^(N+1)/(N+1)!]/(1-r).",
+  "exponential_certificates": [
+    {
+      "argument": "3/4",
+      "taylor_degree": 2,
+      "included_terms": [
+        "1",
+        "3/4",
+        "9/32"
+      ],
+      "strict_lower_bound": "65/32",
+      "first_omitted_term": "9/128",
+      "subsequent_term_ratio_upper_bound": "3/16",
+      "geometric_remainder_upper_bound": "9/104",
+      "upper_bound": "881/416",
+      "certified_inequality": "exp(3/4) > 2",
+      "rational_margin": "1/32",
+      "logarithmic_consequence": "log(2) < 3/4"
+    },
+    {
+      "argument": "3/2",
+      "taylor_degree": 4,
+      "included_terms": [
+        "1",
+        "3/2",
+        "9/8",
+        "9/16",
+        "27/128"
+      ],
+      "strict_lower_bound": "563/128",
+      "first_omitted_term": "81/1280",
+      "subsequent_term_ratio_upper_bound": "1/4",
+      "geometric_remainder_upper_bound": "27/320",
+      "upper_bound": "2869/640",
+      "certified_inequality": "exp(3/2) < 16/3",
+      "rational_margin": "1633/1920",
+      "logarithmic_consequence": "3/4 < (1/2)*log(16/3)"
+    }
+  ]
+}
